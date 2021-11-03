@@ -1,4 +1,4 @@
-Gemaakt door:a
+Gemaakt door:
 
 Tommaso van Gelderen
 
