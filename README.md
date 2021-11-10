@@ -2,5 +2,5 @@
 - Tommaso van Gelderen
 - Bob Wagemans
 - Jesse van Dien
-- Rafael Kruiniger
+- Rafael Kruinigert
 - Mohammed Irezzi
