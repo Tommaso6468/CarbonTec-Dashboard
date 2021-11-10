@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/CarbonTec-Dashboard.iml" filepath="$PROJECT_DIR$/CarbonTec-Dashboard.iml" />
+      <module fileurl="file://$PROJECT_DIR$/CarbonTecDashboard.iml" filepath="$PROJECT_DIR$/CarbonTecDashboard.iml" />
     </modules>
   </component>
 </project>
