@@ -11,7 +11,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="CarbonTec-Dashboard" target="17" />
+      <module name="CarbonTec-Dashboard" target="16" />
       <module name="CarbonTecDashboard" target="17" />
     </bytecodeTargetLevel>
   </component>
