@@ -15,7 +15,7 @@ public class LogIn extends JFrame{
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //sluit het programma als je op x drukt
         frame.setResizable(false); //gebruiker kan dan niet het scherm van grootte veranderen
         frame.setSize(1800,1000); //maakt de grootte
-        frame.setContentPane(new LogIn().KGradientPanel1); //voegt de gradient panel toe
+        frame.setContentPane(new LogIn().panel1); //voegt panel1 van de form toe
         frame.setVisible(true); //laat het scherm zien
 
         ImageIcon imageIcon = new ImageIcon("Icon.png"); //maakt icon
