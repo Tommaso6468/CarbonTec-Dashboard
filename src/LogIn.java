@@ -6,19 +6,31 @@ import java.awt.*;
 public class LogIn extends JFrame{
 
     public LogIn() {
-        //Maken van objects
-        KGradientPanel bg = new KGradientPanel();
-        JPanel loginBg = new JPanel();
 
-        //Instellen van objects
+        //Maken en instellen objects
         //bg.setLayout(new GridLayout());
+        KGradientPanel bg = new KGradientPanel();
         bg.setStartColor(new java.awt.Color(252, 92, 125));
         bg.setEndColor(new java.awt.Color(106, 130, 251));
         bg.setGradientFocus(1500);
 
+
         //loginBg.setForeground(new java.awt.Color(67,70,75));
-        loginBg.setBackground(new java.awt.Color(179, 188, 196));
-        loginBg.setBounds(1100,100,550,750);
+        JPanel loginBg = new JPanel();
+        //loginBg.setBackground(new java.awt.Color(179, 188, 196));
+        loginBg.setBounds(1100,100,500,750);
+
+
+        JLabel foto = new JLabel();
+        foto.setIcon(new javax.swing.ImageIcon(getClass().getResource("ComputerCloud512x512.png")));
+        foto.setBounds(230,220,512,512);
+
+
+        JLabel carbonNaam = new JLabel();
+        carbonNaam.setIcon(new javax.swing.ImageIcon(getClass().getResource("CarbonTec100x17.png")));
+        carbonNaam.setBounds(50,900,100,17);
+
+
 
 
         //Opstellen van scherm
@@ -33,7 +45,8 @@ public class LogIn extends JFrame{
 
         //Objects toevoegen aan scherm
         bg.add(loginBg);
-
+        bg.add(foto);
+        bg.add(carbonNaam);
 
         //Scherm tonen
         setVisible(true);
