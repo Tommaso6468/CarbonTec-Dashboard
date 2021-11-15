@@ -23,7 +23,7 @@ public class LogIn extends JFrame{
 
         JLabel foto = new JLabel();
         foto.setIcon(new javax.swing.ImageIcon(getClass().getResource("ComputerCloud512x512.png")));
-        foto.setBounds(230,220,512,512);
+        foto.setBounds(250,220,512,512);
 
 
         JLabel carbonNaam = new JLabel();
