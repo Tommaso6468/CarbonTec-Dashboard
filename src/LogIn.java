@@ -12,12 +12,12 @@ public class LogIn extends JFrame{
 
         //Instellen van objects
         //bg.setLayout(new GridLayout());
-        bg.setStartColor(new java.awt.Color(195,55,100));
-        bg.setEndColor(new java.awt.Color(29,38,113));
-        bg.setGradientFocus(700);
+        bg.setStartColor(new java.awt.Color(252, 92, 125));
+        bg.setEndColor(new java.awt.Color(106, 130, 251));
+        bg.setGradientFocus(1500);
 
         //loginBg.setForeground(new java.awt.Color(67,70,75));
-        //loginBg.setBackground(new java.awt.Color(67,70,75));
+        loginBg.setBackground(new java.awt.Color(179, 188, 196));
         loginBg.setBounds(1100,100,550,750);
 
 
