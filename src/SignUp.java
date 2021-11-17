@@ -6,6 +6,8 @@ import java.util.Objects;
 
 public class SignUp extends JFrame {
 
+    public JButton ofLogIn = new JButton("<html><u>Of log in</u></html");
+
 
     private void signupButtonPressed(ActionEvent e){
 
@@ -123,6 +125,13 @@ public class SignUp extends JFrame {
         aanmaken.setForeground(new Color(255,255,255));
         aanmaken.addActionListener(this::signupButtonPressed);
 
+        ofLogIn.setFont(new Font("Segoe UI", 0,15));
+        ofLogIn.setForeground(new Color(179, 179, 179));
+        ofLogIn.setOpaque(false);
+        ofLogIn.setBorderPainted(false);
+        ofLogIn.setContentAreaFilled(false);
+        ofLogIn.addActionListener(this::signupButtonPressed);
+
 
 
 
@@ -145,6 +154,7 @@ public class SignUp extends JFrame {
                                                 .addComponent(signupPwd, screenSize.width/4, screenSize.width/4, screenSize.width/4)
                                                 .addComponent(signupPwdTxt)
                                                 .addComponent(buttonGradient, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE)
+                                                .addComponent(ofLogIn, GroupLayout.Alignment.CENTER,GroupLayout.DEFAULT_SIZE,GroupLayout.DEFAULT_SIZE,GroupLayout.DEFAULT_SIZE)
                                         )
                                 )
                         )
@@ -154,30 +164,33 @@ public class SignUp extends JFrame {
         loginBlokLayout.setVerticalGroup(
                 loginBlokLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                         .addGroup(loginBlokLayout.createSequentialGroup()
-                                .addGap(25,25,25)
+                                .addGap(20,20,20)
                                 .addComponent(signup)
-                                .addGap(30,30,30)
+                                .addGap(25,25,25)
                                 .addComponent(signupVoornaam)
                                 .addGap(12,12,12)
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(signupVoornaamTxt,GroupLayout.PREFERRED_SIZE,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
-                                .addGap(30,30,30)
+                                .addGap(25,25,25)
                                 .addComponent(signupAchternaam)
                                 .addGap(12,12,12)
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(signupAchternaamTxt,GroupLayout.PREFERRED_SIZE,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
-                                .addGap(30,30,30)
+                                .addGap(25,25,25)
                                 .addComponent(signupEmail)
                                 .addGap(12,12,12)
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(signupEmailTxt,GroupLayout.PREFERRED_SIZE,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
-                                .addGap(30,30,30)
+                                .addGap(25,25,25)
                                 .addComponent(signupPwd)
                                 .addGap(12,12,12)
                                 .addComponent(signupPwdTxt,GroupLayout.PREFERRED_SIZE,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED,24,Short.MAX_VALUE)
                                 .addComponent(buttonGradient, GroupLayout.PREFERRED_SIZE,44,GroupLayout.PREFERRED_SIZE)
-                                .addGap(23,23,23)
+                                .addGap(10,10,10)
+                                .addComponent(ofLogIn)
+                                .addGap(25,25,25)
+
                         )
         );
 
@@ -204,4 +217,5 @@ public class SignUp extends JFrame {
 
 
 }
+
 
