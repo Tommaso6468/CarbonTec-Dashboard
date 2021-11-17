@@ -42,7 +42,7 @@ public class LogIn extends JFrame {
 
 
         loginBg.setBackground(new java.awt.Color(255, 255, 255));
-        loginBg.setBounds((screenSize.width*5)/9, screenSize.height/7, 460, 500);
+        loginBg.setBounds((screenSize.width*5)/9, screenSize.height/7, (screenSize.width*10)/31, (screenSize.height*10)/15);
 
 
         JLabel foto = new JLabel();
