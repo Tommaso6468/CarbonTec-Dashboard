@@ -1,6 +1,8 @@
+import java.io.IOException;
+
 public class MainProgram {
 
-    public static void main(String[] args){
+    public static void main(String[] args) throws IOException {
         //1 is inloggen
         //2 is signup
         LogIn logIn = new LogIn();
@@ -15,8 +17,18 @@ public class MainProgram {
 
             if (i == 2) {
                 logIn.setVisible(false);
-                SignUp signUp = new SignUp();
-                signUp.setVisible(true);
+                SignUp signUp = null;
+                try {
+
+
+                    signUp = new SignUp();
+                    signUp.setVisible(true);
+
+
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
                 //System.out.println(2);
             }
 
