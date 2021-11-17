@@ -10,7 +10,9 @@ import java.util.Objects;
 
 public class SignUp extends JFrame {
 
-    JButton aanmaken = new JButton();
+    public JButton aanmaken = new JButton();
+
+    public JButton ofLogIn = new JButton("<html><u>Of log in</u></html");
 
 
     private void signupButtonPressed(ActionEvent e){
@@ -137,6 +139,14 @@ public class SignUp extends JFrame {
         buttonGradient.add(aanmaken);
 
 
+        ofLogIn.setFont(new Font("Segoe UI", 0,screenSize.width/96));
+        ofLogIn.setForeground(new Color(179, 179, 179));
+        ofLogIn.setOpaque(false);
+        ofLogIn.setBorderPainted(false);
+        ofLogIn.setContentAreaFilled(false);
+        ofLogIn.addActionListener(this::signupButtonPressed);
+
+
 
 
         GroupLayout loginBlokLayout = new GroupLayout(signupBg);
@@ -157,6 +167,7 @@ public class SignUp extends JFrame {
                                                 .addComponent(signupPwd, screenSize.width/4, screenSize.width/4, screenSize.width/4)
                                                 .addComponent(signupPwdTxt)
                                                 .addComponent(buttonGradient, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE)
+                                                .addComponent(ofLogIn, GroupLayout.Alignment.CENTER,GroupLayout.DEFAULT_SIZE,GroupLayout.DEFAULT_SIZE,GroupLayout.DEFAULT_SIZE)
                                         )
                                 )
                         )
@@ -189,7 +200,9 @@ public class SignUp extends JFrame {
                                 .addComponent(signupPwdTxt,GroupLayout.PREFERRED_SIZE,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
                                 .addGap(screenSize.width/29)
                                 .addComponent(buttonGradient, GroupLayout.PREFERRED_SIZE,screenSize.width/33,GroupLayout.PREFERRED_SIZE)
-                                .addGap(screenSize.width/63)
+                                .addGap(screenSize.width/288)
+                                .addComponent(ofLogIn)
+                                .addGap(screenSize.width/29)
                         )
         );
 
