@@ -17,8 +17,18 @@ public class MainProgram {
 
             if (i == 2) {
                 logIn.setVisible(false);
-                SignUp signUp = new SignUp();
-                signUp.setVisible(true);
+                SignUp signUp = null;
+                try {
+
+
+                    signUp = new SignUp();
+                    signUp.setVisible(true);
+
+
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
                 //System.out.println(2);
             }
 

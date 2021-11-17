@@ -1,7 +1,11 @@
 import keeptoo.KGradientPanel;
+
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 import java.util.Objects;
 
 public class SignUp extends JFrame {
@@ -13,7 +17,7 @@ public class SignUp extends JFrame {
 
 
 
-    public SignUp() {
+    public SignUp() throws IOException {
 
         //Resolutie gebruiker zoeken
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -36,74 +40,81 @@ public class SignUp extends JFrame {
         signupBg.setBounds((screenSize.width*3)/5, screenSize.height/10, 380, 500);
 
 
+        BufferedImage fotoBuffer = ImageIO.read(Objects.requireNonNull(getClass().getResource("ComputerCloud512x512.png")));
+        Image fotoResized = fotoBuffer.getScaledInstance((screenSize.width*10)/30,(screenSize.width*10)/30,Image.SCALE_DEFAULT);
+
+        BufferedImage fotoCarbonBuffer = ImageIO.read(Objects.requireNonNull(getClass().getResource("CarbonTec100x17.png")));
+        Image fotoCarbonResized = fotoCarbonBuffer.getScaledInstance(screenSize.width/14,screenSize.height/45,Image.SCALE_DEFAULT);
+
+
         JLabel foto = new JLabel();
-        foto.setIcon(new ImageIcon(Objects.requireNonNull(getClass().getResource("ComputerCloud512x512.png"))));
-        foto.setBounds(screenSize.width/15, screenSize.height/12, 512, 512);
+        foto.setIcon(new ImageIcon(fotoResized));
+        foto.setBounds(screenSize.width/12, (screenSize.height*10)/57, (screenSize.width*10)/30, (screenSize.width*10)/30);
 
 
         JLabel carbonNaam = new JLabel();
-        carbonNaam.setIcon(new ImageIcon(Objects.requireNonNull(getClass().getResource("CarbonTec100x17.png"))));
-        carbonNaam.setBounds(screenSize.width/39, (screenSize.height/10)*9, 100, 17);
+        carbonNaam.setIcon(new ImageIcon(fotoCarbonResized));
+        carbonNaam.setBounds(screenSize.width/39, (screenSize.height/10)*9, screenSize.width/14, screenSize.width/85);
 
 
 
         JLabel signup = new JLabel();
-        signup.setFont(new Font("Segoe UI", 1, 18));
+        signup.setFont(new Font("Segoe UI", 1, screenSize.width/80));
         signup.setForeground(new Color(102, 102, 102));
         signup.setText("Maak een CarbonTec account aan ");
 
 
         JLabel signupVoornaam = new JLabel();
-        signupVoornaam.setFont(new Font("Segoe UI", 0, 15));
+        signupVoornaam.setFont(new Font("Segoe UI", 0, screenSize.width/96));
         signupVoornaam.setForeground(new Color(102,102,102));
         signupVoornaam.setText("Voornaam");
 
 
         JTextField signupVoornaamTxt = new JTextField();
-        signupVoornaamTxt.setFont(new Font("Segoe UI",0,14));
+        signupVoornaamTxt.setFont(new Font("Segoe UI",0,screenSize.width/103));
         signupVoornaamTxt.setForeground(new Color(102,102,102));
         signupVoornaamTxt.setBackground(new Color(255,255,255));
         signupVoornaamTxt.setBorder(BorderFactory.createMatteBorder(0,0,2,0,new Color(12,91,160)));
 
 
         JLabel signupAchternaam = new JLabel();
-        signupAchternaam.setFont(new Font("Segoe UI",0,15));
+        signupAchternaam.setFont(new Font("Segoe UI",0,screenSize.width/96));
         signupAchternaam.setForeground(new Color(102,102,102));
         signupAchternaam.setText("Achternaam");
 
 
         JTextField signupAchternaamTxt = new JTextField();
-        signupAchternaamTxt.setFont(new Font("Segoe UI",0,14));
+        signupAchternaamTxt.setFont(new Font("Segoe UI",0,screenSize.width/103));
         signupAchternaamTxt.setForeground(new Color(102,102,102));
         signupAchternaamTxt.setBackground(new Color(255,255,255));
-        signupAchternaamTxt.setBorder(BorderFactory.createMatteBorder(0,0,2,0,new Color(12,91,160)));
+        signupAchternaamTxt.setBorder(BorderFactory.createMatteBorder(0,0,screenSize.width/720,0,new Color(12,91,160)));
 
 
 
         JLabel signupEmail = new JLabel();
-        signupEmail.setFont(new Font("Segoe UI", 0, 15));
+        signupEmail.setFont(new Font("Segoe UI", 0, screenSize.width/96));
         signupEmail.setForeground(new Color(102, 102, 102));
         signupEmail.setText("Email");
 
 
         JLabel signupPwd = new JLabel();
-        signupPwd.setFont(new Font("Segoe UI", 0, 15));
+        signupPwd.setFont(new Font("Segoe UI", 0, screenSize.width/96));
         signupPwd.setForeground(new Color(102, 102, 102));
         signupPwd.setText("Wachtwoord");
 
 
         JTextField signupEmailTxt = new JTextField();
-        signupEmailTxt.setFont(new Font("Segoe UI", 0, 14));
+        signupEmailTxt.setFont(new Font("Segoe UI", 0, screenSize.width/103));
         signupEmailTxt.setForeground(new Color(102, 102, 102));
         signupEmailTxt.setBackground(new Color(255,255,255));
-        signupEmailTxt.setBorder(BorderFactory.createMatteBorder(0, 0, 2, 0, new Color(12, 91, 160)));
+        signupEmailTxt.setBorder(BorderFactory.createMatteBorder(0, 0, screenSize.width/720, 0, new Color(12, 91, 160)));
 
 
         JPasswordField signupPwdTxt = new JPasswordField();
-        signupPwdTxt.setFont(new Font("Segoe UI", 0, 14));
+        signupPwdTxt.setFont(new Font("Segoe UI", 0, screenSize.width/103));
         signupPwdTxt.setForeground(new Color(102, 102, 102));
         signupPwdTxt.setBackground(new Color(255,255,255));
-        signupPwdTxt.setBorder(BorderFactory.createMatteBorder(0, 0, 2, 0, new Color(12, 91, 160)));
+        signupPwdTxt.setBorder(BorderFactory.createMatteBorder(0, 0, screenSize.width/720, 0, new Color(12, 91, 160)));
 
 
         KGradientPanel buttonGradient = new KGradientPanel();
@@ -113,16 +124,15 @@ public class SignUp extends JFrame {
 
 
         JButton aanmaken = new JButton();
-        aanmaken.setFont(new Font("Segoe UI", 1, 17));
-        aanmaken.setText("Aanmaken                         ");
+        aanmaken.setFont(new Font("Segoe UI", 1, screenSize.width/85));
+        aanmaken.setText("Aanmaken");
         aanmaken.setOpaque(false);
         aanmaken.setContentAreaFilled(false);
         aanmaken.setBorderPainted(false);
-        buttonGradient.add(aanmaken);
-        aanmaken.setBounds(55,0,300,40);
+        aanmaken.setSize(buttonGradient.getWidth(), buttonGradient.getHeight());
         aanmaken.setForeground(new Color(255,255,255));
         aanmaken.addActionListener(this::signupButtonPressed);
-
+        buttonGradient.add(aanmaken);
 
 
 
@@ -154,30 +164,30 @@ public class SignUp extends JFrame {
         loginBlokLayout.setVerticalGroup(
                 loginBlokLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                         .addGroup(loginBlokLayout.createSequentialGroup()
-                                .addGap(25,25,25)
+                                .addGap(screenSize.width/58,screenSize.width/58,screenSize.width/58)
                                 .addComponent(signup)
-                                .addGap(30,30,30)
+                                .addGap(screenSize.width/48,screenSize.width/48,screenSize.width/48)
                                 .addComponent(signupVoornaam)
-                                .addGap(12,12,12)
+                                .addGap(screenSize.width/120,screenSize.width/120,12)
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(signupVoornaamTxt,GroupLayout.PREFERRED_SIZE,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
-                                .addGap(30,30,30)
+                                .addGap(screenSize.width/48,screenSize.width/48,screenSize.width/48)
                                 .addComponent(signupAchternaam)
-                                .addGap(12,12,12)
+                                .addGap(screenSize.width/120,screenSize.width/120,screenSize.width/120)
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(signupAchternaamTxt,GroupLayout.PREFERRED_SIZE,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
-                                .addGap(30,30,30)
+                                .addGap(screenSize.width/48,screenSize.width/48,screenSize.width/48)
                                 .addComponent(signupEmail)
-                                .addGap(12,12,12)
+                                .addGap(screenSize.width/120,screenSize.width/120,screenSize.width/120)
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(signupEmailTxt,GroupLayout.PREFERRED_SIZE,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
-                                .addGap(30,30,30)
+                                .addGap(screenSize.width/48,screenSize.width/48,screenSize.width/48)
                                 .addComponent(signupPwd)
-                                .addGap(12,12,12)
+                                .addGap(screenSize.width/120,screenSize.width/120,screenSize.width/120)
                                 .addComponent(signupPwdTxt,GroupLayout.PREFERRED_SIZE,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED,24,Short.MAX_VALUE)
-                                .addComponent(buttonGradient, GroupLayout.PREFERRED_SIZE,44,GroupLayout.PREFERRED_SIZE)
-                                .addGap(23,23,23)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED,screenSize.width/60,Short.MAX_VALUE)
+                                .addComponent(buttonGradient, GroupLayout.PREFERRED_SIZE,screenSize.width/33,GroupLayout.PREFERRED_SIZE)
+                                .addGap(screenSize.width/63,screenSize.width/63,screenSize.width/63)
                         )
         );
 

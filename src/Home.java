@@ -7,6 +7,11 @@ public class Home extends JFrame {
 
     public Home(){
 
+        //Resolutie gebruiker zoeken
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        screenSize.width = (int) (screenSize.width*3)/4;
+        screenSize.height = (int) (screenSize.height*3)/4;
+
         KGradientPanel bg = new KGradientPanel();
         bg.setStartColor(new Color(252, 92, 125));
         bg.setEndColor(new Color(106, 130, 251));
@@ -16,7 +21,7 @@ public class Home extends JFrame {
         setTitle("CarbonTec Dashboard");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setResizable(false);
-        setSize(1800, 1000);
+        setSize(screenSize.width, screenSize.height);
         setContentPane(bg);
 
         //Toevoegen image
