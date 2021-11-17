@@ -24,6 +24,8 @@ public class LogIn extends JFrame {
 
 
     public LogIn(){
+        //Resolutie gebruiker zoeken
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 
         //Maken en instellen objects
         //bg.setLayout(new GridLayout());
@@ -38,17 +40,17 @@ public class LogIn extends JFrame {
 
 
         loginBg.setBackground(new java.awt.Color(255, 255, 255));
-        loginBg.setBounds(1100, 100, 500, 750);
+        loginBg.setBounds((screenSize.width*3)/5, screenSize.height/10, screenSize.width/3, (screenSize.height*3)/4);
 
 
         JLabel foto = new JLabel();
         foto.setIcon(new ImageIcon(Objects.requireNonNull(getClass().getResource("ComputerCloud512x512.png"))));
-        foto.setBounds(250, 220, 512, 512);
+        foto.setBounds(screenSize.width/8, screenSize.height/5, 512, 512);
 
 
         JLabel carbonNaam = new JLabel();
         carbonNaam.setIcon(new ImageIcon(Objects.requireNonNull(getClass().getResource("CarbonTec100x17.png"))));
-        carbonNaam.setBounds(50, 900, 100, 17);
+        carbonNaam.setBounds(screenSize.width/39, (screenSize.height/10)*9, screenSize.width/14, screenSize.height/50);
 
 
         JLabel logIn = new JLabel();
