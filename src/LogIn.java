@@ -52,6 +52,9 @@ public class LogIn extends JFrame {
         BufferedImage fotoBuffer = ImageIO.read(Objects.requireNonNull(getClass().getResource("ComputerCloud512x512.png")));
         Image fotoResized = fotoBuffer.getScaledInstance((screenSize.width*10)/30,(screenSize.width*10)/30,Image.SCALE_DEFAULT);
 
+        BufferedImage fotoCarbonBuffer = ImageIO.read(Objects.requireNonNull(getClass().getResource("CarbonTec100x17.png")));
+        Image fotoCarbonResized = fotoCarbonBuffer.getScaledInstance(screenSize.width/14,screenSize.height/45,Image.SCALE_DEFAULT);
+
 
         JLabel foto = new JLabel();
         foto.setIcon(new ImageIcon(fotoResized));
@@ -59,7 +62,7 @@ public class LogIn extends JFrame {
 
 
         JLabel carbonNaam = new JLabel();
-        carbonNaam.setIcon(new ImageIcon(Objects.requireNonNull(getClass().getResource("CarbonTec100x17.png"))));
+        carbonNaam.setIcon(new ImageIcon(fotoCarbonResized));
         carbonNaam.setBounds(screenSize.width/39, (screenSize.height/10)*9, screenSize.width/14, screenSize.width/85);
 
 
