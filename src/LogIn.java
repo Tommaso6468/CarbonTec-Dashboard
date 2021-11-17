@@ -50,7 +50,7 @@ public class LogIn extends JFrame {
 
         JLabel carbonNaam = new JLabel();
         carbonNaam.setIcon(new ImageIcon(Objects.requireNonNull(getClass().getResource("CarbonTec100x17.png"))));
-        carbonNaam.setBounds(screenSize.width/39, (screenSize.height/10)*9, screenSize.width/14, screenSize.height/50);
+        carbonNaam.setBounds(screenSize.width/39, (screenSize.height/10)*9, 100, 17);
 
 
         JLabel logIn = new JLabel();
