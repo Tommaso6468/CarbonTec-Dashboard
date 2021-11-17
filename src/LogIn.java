@@ -99,7 +99,7 @@ public class LogIn extends JFrame {
         inloggen.setContentAreaFilled(false);
         inloggen.setBorderPainted(false);
         buttonGradient.add(inloggen);
-        inloggen.setBounds(8, 0, 300, 40);
+        inloggen.setBounds(screenSize.width/280, 0, 300, 40);
         inloggen.setForeground(new Color(255,255,255));
         inloggen.addActionListener(this::ButtonPressed);
 
