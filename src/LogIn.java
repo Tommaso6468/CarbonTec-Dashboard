@@ -5,7 +5,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
 import java.util.Objects;
 import java.util.function.Consumer;
@@ -46,76 +45,76 @@ public class LogIn extends JFrame {
         JPanel loginBg = new JPanel();
 
 
-        loginBg.setBackground(new java.awt.Color(255, 255, 255));
-        loginBg.setBounds((screenSize.width*5)/9, screenSize.height/7, (screenSize.width*10)/31, (screenSize.height*10)/15);
+        loginBg.setBackground(new Color(255, 255, 255));
+        loginBg.setBounds((screenSize.width*10)/17, screenSize.height/7, (screenSize.width*10)/31, (screenSize.height*10)/15);
 
 
         BufferedImage fotoBuffer = ImageIO.read(Objects.requireNonNull(getClass().getResource("ComputerCloud512x512.png")));
-        Image fotoResized = fotoBuffer.getScaledInstance((screenSize.width*10)/50,(screenSize.width*10)/50,Image.SCALE_DEFAULT);
+        Image fotoResized = fotoBuffer.getScaledInstance((screenSize.width*10)/30,(screenSize.width*10)/30,Image.SCALE_DEFAULT);
 
 
         JLabel foto = new JLabel();
         foto.setIcon(new ImageIcon(fotoResized));
-        foto.setBounds(screenSize.width/7, screenSize.height/4, (screenSize.width*10)/50, (screenSize.width*10)/50);
+        foto.setBounds(screenSize.width/12, (screenSize.height*10)/57, (screenSize.width*10)/30, (screenSize.width*10)/30);
 
 
         JLabel carbonNaam = new JLabel();
         carbonNaam.setIcon(new ImageIcon(Objects.requireNonNull(getClass().getResource("CarbonTec100x17.png"))));
-        carbonNaam.setBounds(screenSize.width/39, (screenSize.height/10)*9, 100, 17);
+        carbonNaam.setBounds(screenSize.width/39, (screenSize.height/10)*9, screenSize.width/14, screenSize.width/85);
 
 
         JLabel logIn = new JLabel();
-        logIn.setFont(new Font("Segoe UI", 1, 18));
+        logIn.setFont(new Font("Segoe UI", 1, screenSize.width/80));
         logIn.setForeground(new Color(102, 102, 102));
         logIn.setText("Log in met uw CarbonTec account");
 
 
         JLabel loginEmail = new JLabel();
-        loginEmail.setFont(new Font("Segoe UI", 0, 15));
+        loginEmail.setFont(new Font("Segoe UI", 0, screenSize.width/96));
         loginEmail.setForeground(new Color(102, 102, 102));
         loginEmail.setText("Email");
 
 
         JLabel loginPwd = new JLabel();
-        loginPwd.setFont(new Font("Segoe UI", 0, 15));
+        loginPwd.setFont(new Font("Segoe UI", 0, screenSize.width/96));
         loginPwd.setForeground(new Color(102, 102, 102));
         loginPwd.setText("Wachtwoord");
 
 
         JTextField loginEmailTxt = new JTextField();
-        loginEmailTxt.setFont(new Font("Segoe UI", 0, 14));
+        loginEmailTxt.setFont(new Font("Segoe UI", 0, screenSize.width/103));
         loginEmailTxt.setForeground(new Color(102, 102, 102));
         loginEmailTxt.setBackground(new Color(255,255,255));
-        loginEmailTxt.setBorder(BorderFactory.createMatteBorder(0, 0, 2, 0, new Color(12, 91, 160)));
+        loginEmailTxt.setBorder(BorderFactory.createMatteBorder(0, 0, screenSize.width/720, 0, new Color(12, 91, 160)));
 
 
         JPasswordField loginPwdTxt = new JPasswordField();
         loginPwdTxt.setFont(new Font("Segoe UI", 0, 15));
         loginPwdTxt.setForeground(new Color(102, 102, 102));
         loginPwdTxt.setBackground(new Color(255,255,255));
-        loginPwdTxt.setBorder(BorderFactory.createMatteBorder(0, 0, 2, 0, new Color(12, 91, 160)));
+        loginPwdTxt.setBorder(BorderFactory.createMatteBorder(0, 0, screenSize.width/720, 0, new Color(12, 91, 160)));
 
 
         KGradientPanel buttonGradient = new KGradientPanel();
         buttonGradient.setStartColor(new Color(252, 92, 125));
         buttonGradient.setEndColor(new Color(106, 130, 251));
         buttonGradient.setGradientFocus(200);
+        buttonGradient.setSize(screenSize.width/4, screenSize.height/20);
 
 
 
-        inloggen.setFont(new Font("Segoe UI", 1, 17));
-        inloggen.setText("           Inloggen");
+        inloggen.setFont(new Font("Segoe UI", 1, screenSize.width/85));
+        inloggen.setText("Inloggen");
         inloggen.setOpaque(false);
         inloggen.setContentAreaFilled(false);
         inloggen.setBorderPainted(false);
-        buttonGradient.add(inloggen);
-        inloggen.setBounds(0, 0, 300, 40);
+        inloggen.setSize(buttonGradient.getWidth(), buttonGradient.getHeight());
         inloggen.setForeground(new Color(255,255,255));
         inloggen.addActionListener(this::ButtonPressed);
+        buttonGradient.add(inloggen);
 
 
-
-        maakAccount.setFont(new Font("Segoe UI", 0,15));
+        maakAccount.setFont(new Font("Segoe UI", 0,screenSize.width/96));
         maakAccount.setForeground(new Color(179, 179, 179));
         maakAccount.setOpaque(false);
         maakAccount.setBorderPainted(false);
@@ -149,22 +148,22 @@ public class LogIn extends JFrame {
         loginBlokLayout.setVerticalGroup(
                 loginBlokLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                 .addGroup(loginBlokLayout.createSequentialGroup()
-                        .addGap(50,50,50)
+                        .addGap(screenSize.width/29,screenSize.width/29,screenSize.width/29)
                         .addComponent(logIn)
-                        .addGap(60,60,60)
+                        .addGap(screenSize.width/24,screenSize.width/24,screenSize.width/24)
                         .addComponent(loginEmail)
-                        .addGap(18,18,18)
+                        .addGap(screenSize.width/80,screenSize.width/80,screenSize.width/80)
                         .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(loginEmailTxt,GroupLayout.PREFERRED_SIZE,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
-                        .addGap(60,60,60)
+                        .addGap(screenSize.width/24,screenSize.width/24,screenSize.width/24)
                         .addComponent(loginPwd)
-                        .addGap(18,18,18)
+                        .addGap(screenSize.width/80,screenSize.width/80,screenSize.width/80)
                         .addComponent(loginPwdTxt,GroupLayout.PREFERRED_SIZE,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED,24,Short.MAX_VALUE)
-                        .addComponent(buttonGradient, GroupLayout.PREFERRED_SIZE,44,GroupLayout.PREFERRED_SIZE)
-                        .addGap(5,5,5)
+                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED,screenSize.width/60,Short.MAX_VALUE)
+                        .addComponent(buttonGradient, GroupLayout.PREFERRED_SIZE,screenSize.width/33,GroupLayout.PREFERRED_SIZE)
+                        .addGap(screenSize.width/288,screenSize.width/288,screenSize.width/288)
                         .addComponent(maakAccount)
-                        .addGap(50,50,50)
+                        .addGap(screenSize.width/29,screenSize.width/29,screenSize.width/29)
                 )
         );
 
