@@ -1,7 +1,12 @@
 import keeptoo.KGradientPanel;
+
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.Objects;
 import java.util.function.Consumer;
 
@@ -23,7 +28,7 @@ public class LogIn extends JFrame {
     }
 
 
-    public LogIn(){
+    public LogIn() throws IOException {
         //Resolutie gebruiker zoeken
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         screenSize.width = (int) (screenSize.width*3)/4;
@@ -45,9 +50,13 @@ public class LogIn extends JFrame {
         loginBg.setBounds((screenSize.width*5)/9, screenSize.height/7, (screenSize.width*10)/31, (screenSize.height*10)/15);
 
 
+        BufferedImage fotoBuffer = ImageIO.read(Objects.requireNonNull(getClass().getResource("ComputerCloud512x512.png")));
+        Image fotoResized = fotoBuffer.getScaledInstance((screenSize.width*10)/50,(screenSize.width*10)/50,Image.SCALE_DEFAULT);
+
+
         JLabel foto = new JLabel();
-        foto.setIcon(new ImageIcon(Objects.requireNonNull(getClass().getResource("ComputerCloud300x300.png"))));
-        foto.setBounds(screenSize.width/7, screenSize.height/4, 300, 300);
+        foto.setIcon(new ImageIcon(fotoResized));
+        foto.setBounds(screenSize.width/7, screenSize.height/4, (screenSize.width*10)/50, (screenSize.width*10)/50);
 
 
         JLabel carbonNaam = new JLabel();
@@ -91,6 +100,7 @@ public class LogIn extends JFrame {
         buttonGradient.setStartColor(new Color(252, 92, 125));
         buttonGradient.setEndColor(new Color(106, 130, 251));
         buttonGradient.setGradientFocus(200);
+
 
 
         inloggen.setFont(new Font("Segoe UI", 1, 17));

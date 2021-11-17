@@ -1,6 +1,8 @@
+import java.io.IOException;
+
 public class MainProgram {
 
-    public static void main(String[] args){
+    public static void main(String[] args) throws IOException {
         //1 is inloggen
         //2 is signup
         LogIn logIn = new LogIn();
