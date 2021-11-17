@@ -72,7 +72,66 @@ public class MainProgram {
 
         Home home = new Home();
         home.setVisible(true);
-        
+
+        home.callback = (homeReturn) -> {
+
+            //1 is logout
+            //2 is home
+            //3 is apparaten
+            if (homeReturn == 1){
+                home.setVisible(false);
+                try {
+                    loginScherm();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            if (homeReturn == 2){
+                home.setVisible(false);
+                homeScherm();
+            }
+
+            if (homeReturn == 3){
+                home.setVisible(false);
+                apparatenScherm();
+            }
+
+        };
+
+    }
+
+    public static void apparatenScherm(){
+
+        Apparaten apparaten = new Apparaten();
+        apparaten.setVisible(true);
+
+        apparaten.callback = (apparatenReturn) -> {
+
+            //1 is logout
+            //2 is home
+            //3 is apparaten
+            if (apparatenReturn == 1){
+                apparaten.setVisible(false);
+                try {
+                    loginScherm();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            if (apparatenReturn == 2){
+                apparaten.setVisible(false);
+                homeScherm();
+            }
+
+            if (apparatenReturn == 3){
+                apparaten.setVisible(false);
+                apparatenScherm();
+            }
+
+        };
+
     }
 
 }
