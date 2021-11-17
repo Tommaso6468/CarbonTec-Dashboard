@@ -42,7 +42,7 @@ public class LogIn extends JFrame {
 
 
         loginBg.setBackground(new java.awt.Color(255, 255, 255));
-        loginBg.setBounds((screenSize.width*3)/5, screenSize.height/10, screenSize.width/3, (screenSize.height*3)/4);
+        loginBg.setBounds((screenSize.width*3)/5, screenSize.height/10, 380, 500);
 
 
         JLabel foto = new JLabel();
@@ -99,7 +99,7 @@ public class LogIn extends JFrame {
         inloggen.setContentAreaFilled(false);
         inloggen.setBorderPainted(false);
         buttonGradient.add(inloggen);
-        inloggen.setBounds(screenSize.width/280, 0, 300, 40);
+        inloggen.setBounds(0, 0, 300, 40);
         inloggen.setForeground(new Color(255,255,255));
         inloggen.addActionListener(this::ButtonPressed);
 
