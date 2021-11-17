@@ -10,9 +10,11 @@ import java.util.Objects;
 
 public class SignUp extends JFrame {
 
+    JButton aanmaken = new JButton();
+
 
     private void signupButtonPressed(ActionEvent e){
-
+        //if (e.getSource() == aanmaken)
     }
 
 
@@ -37,7 +39,7 @@ public class SignUp extends JFrame {
 
 
         signupBg.setBackground(new Color(255, 255, 255));
-        signupBg.setBounds((screenSize.width*3)/5, screenSize.height/10, 380, 500);
+        signupBg.setBounds((screenSize.width*10)/17, screenSize.height/7, (screenSize.width*10)/31, (screenSize.height*10)/15);
 
 
         BufferedImage fotoBuffer = ImageIO.read(Objects.requireNonNull(getClass().getResource("ComputerCloud512x512.png")));
@@ -121,9 +123,9 @@ public class SignUp extends JFrame {
         buttonGradient.setStartColor(new Color(252, 92, 125));
         buttonGradient.setEndColor(new Color(106, 130, 251));
         buttonGradient.setGradientFocus(200);
+        buttonGradient.setSize(screenSize.width/4, screenSize.height/20);
 
 
-        JButton aanmaken = new JButton();
         aanmaken.setFont(new Font("Segoe UI", 1, screenSize.width/85));
         aanmaken.setText("Aanmaken");
         aanmaken.setOpaque(false);
@@ -142,7 +144,7 @@ public class SignUp extends JFrame {
         loginBlokLayout.setHorizontalGroup(
                 loginBlokLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                         .addGroup(loginBlokLayout.createSequentialGroup()
-                                .addGap(screenSize.width/25, screenSize.width/25, screenSize.width/25)
+                                .addGap(screenSize.width/25)
                                 .addGroup(loginBlokLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                                         .addComponent(signup, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                                         .addGroup(loginBlokLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
@@ -164,30 +166,30 @@ public class SignUp extends JFrame {
         loginBlokLayout.setVerticalGroup(
                 loginBlokLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                         .addGroup(loginBlokLayout.createSequentialGroup()
-                                .addGap(screenSize.width/58,screenSize.width/58,screenSize.width/58)
+                                .addGap(screenSize.width/29)
                                 .addComponent(signup)
-                                .addGap(screenSize.width/48,screenSize.width/48,screenSize.width/48)
+                                .addGap(screenSize.width/48)
                                 .addComponent(signupVoornaam)
-                                .addGap(screenSize.width/120,screenSize.width/120,12)
+                                .addGap(screenSize.width/120)
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(signupVoornaamTxt,GroupLayout.PREFERRED_SIZE,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
-                                .addGap(screenSize.width/48,screenSize.width/48,screenSize.width/48)
+                                .addGap(screenSize.width/48)
                                 .addComponent(signupAchternaam)
-                                .addGap(screenSize.width/120,screenSize.width/120,screenSize.width/120)
+                                .addGap(screenSize.width/120)
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(signupAchternaamTxt,GroupLayout.PREFERRED_SIZE,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
-                                .addGap(screenSize.width/48,screenSize.width/48,screenSize.width/48)
+                                .addGap(screenSize.width/48)
                                 .addComponent(signupEmail)
-                                .addGap(screenSize.width/120,screenSize.width/120,screenSize.width/120)
+                                .addGap(screenSize.width/120)
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(signupEmailTxt,GroupLayout.PREFERRED_SIZE,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
-                                .addGap(screenSize.width/48,screenSize.width/48,screenSize.width/48)
+                                .addGap(screenSize.width/48)
                                 .addComponent(signupPwd)
-                                .addGap(screenSize.width/120,screenSize.width/120,screenSize.width/120)
+                                .addGap(screenSize.width/120)
                                 .addComponent(signupPwdTxt,GroupLayout.PREFERRED_SIZE,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED,screenSize.width/60,Short.MAX_VALUE)
+                                .addGap(screenSize.width/29)
                                 .addComponent(buttonGradient, GroupLayout.PREFERRED_SIZE,screenSize.width/33,GroupLayout.PREFERRED_SIZE)
-                                .addGap(screenSize.width/63,screenSize.width/63,screenSize.width/63)
+                                .addGap(screenSize.width/63)
                         )
         );
 
