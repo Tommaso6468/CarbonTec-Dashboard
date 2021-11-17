@@ -15,6 +15,11 @@ public class SignUp extends JFrame {
 
     public SignUp() {
 
+        //Resolutie gebruiker zoeken
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        screenSize.width = (int) (screenSize.width*3)/4;
+        screenSize.height = (int) (screenSize.height*3)/4;
+
         //Maken en instellen objects
         //bg.setLayout(new GridLayout());
         KGradientPanel bg = new KGradientPanel();
@@ -28,22 +33,22 @@ public class SignUp extends JFrame {
 
 
         signupBg.setBackground(new Color(255, 255, 255));
-        signupBg.setBounds(1100, 100, 500, 750);
+        signupBg.setBounds((screenSize.width*3)/5, screenSize.height/10, 380, 500);
 
 
         JLabel foto = new JLabel();
         foto.setIcon(new ImageIcon(Objects.requireNonNull(getClass().getResource("ComputerCloud512x512.png"))));
-        foto.setBounds(250, 220, 512, 512);
+        foto.setBounds(screenSize.width/15, screenSize.height/12, 512, 512);
 
 
         JLabel carbonNaam = new JLabel();
         carbonNaam.setIcon(new ImageIcon(Objects.requireNonNull(getClass().getResource("CarbonTec100x17.png"))));
-        carbonNaam.setBounds(50, 900, 100, 17);
+        carbonNaam.setBounds(screenSize.width/39, (screenSize.height/10)*9, 100, 17);
 
 
 
         JLabel signup = new JLabel();
-        signup.setFont(new Font("Segoe UI", 1, 20));
+        signup.setFont(new Font("Segoe UI", 1, 18));
         signup.setForeground(new Color(102, 102, 102));
         signup.setText("Maak een CarbonTec account aan ");
 
@@ -114,7 +119,7 @@ public class SignUp extends JFrame {
         aanmaken.setContentAreaFilled(false);
         aanmaken.setBorderPainted(false);
         buttonGradient.add(aanmaken);
-        aanmaken.setBounds(100,0,300,40);
+        aanmaken.setBounds(55,0,300,40);
         aanmaken.setForeground(new Color(255,255,255));
         aanmaken.addActionListener(this::signupButtonPressed);
 
@@ -127,7 +132,7 @@ public class SignUp extends JFrame {
         loginBlokLayout.setHorizontalGroup(
                 loginBlokLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                         .addGroup(loginBlokLayout.createSequentialGroup()
-                                .addGap(65, 65, 65)
+                                .addGap(screenSize.width/25, screenSize.width/25, screenSize.width/25)
                                 .addGroup(loginBlokLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                                         .addComponent(signup, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                                         .addGroup(loginBlokLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
@@ -137,7 +142,7 @@ public class SignUp extends JFrame {
                                                 .addComponent(signupAchternaamTxt)
                                                 .addComponent(signupEmail)
                                                 .addComponent(signupEmailTxt)
-                                                .addComponent(signupPwd, 100, 375,375)
+                                                .addComponent(signupPwd, screenSize.width/4, screenSize.width/4, screenSize.width/4)
                                                 .addComponent(signupPwdTxt)
                                                 .addComponent(buttonGradient, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE)
                                         )
@@ -149,30 +154,30 @@ public class SignUp extends JFrame {
         loginBlokLayout.setVerticalGroup(
                 loginBlokLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                         .addGroup(loginBlokLayout.createSequentialGroup()
-                                .addGap(50,50,50)
+                                .addGap(25,25,25)
                                 .addComponent(signup)
-                                .addGap(60,60,60)
+                                .addGap(30,30,30)
                                 .addComponent(signupVoornaam)
-                                .addGap(18,18,18)
+                                .addGap(12,12,12)
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(signupVoornaamTxt,GroupLayout.PREFERRED_SIZE,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
-                                .addGap(60,60,60)
+                                .addGap(30,30,30)
                                 .addComponent(signupAchternaam)
-                                .addGap(18,18,18)
+                                .addGap(12,12,12)
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(signupAchternaamTxt,GroupLayout.PREFERRED_SIZE,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
-                                .addGap(60,60,60)
+                                .addGap(30,30,30)
                                 .addComponent(signupEmail)
-                                .addGap(18,18,18)
+                                .addGap(12,12,12)
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(signupEmailTxt,GroupLayout.PREFERRED_SIZE,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
-                                .addGap(60,60,60)
+                                .addGap(30,30,30)
                                 .addComponent(signupPwd)
-                                .addGap(18,18,18)
+                                .addGap(12,12,12)
                                 .addComponent(signupPwdTxt,GroupLayout.PREFERRED_SIZE,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED,24,Short.MAX_VALUE)
                                 .addComponent(buttonGradient, GroupLayout.PREFERRED_SIZE,44,GroupLayout.PREFERRED_SIZE)
-                                .addGap(55,55,55)
+                                .addGap(23,23,23)
                         )
         );
 
@@ -181,7 +186,7 @@ public class SignUp extends JFrame {
         setTitle("CarbonTec Dashboard");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setResizable(false);
-        setSize(1800, 1000);
+        setSize(screenSize.width, screenSize.height);
         setContentPane(bg);
         getRootPane().setDefaultButton(aanmaken);
 
