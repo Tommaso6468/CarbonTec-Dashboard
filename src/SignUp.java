@@ -7,8 +7,11 @@ import java.awt.event.ActionEvent;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.Objects;
+import java.util.function.Consumer;
 
 public class SignUp extends JFrame {
+
+    public Consumer<Integer> callback;
 
     public JButton aanmaken = new JButton();
 
@@ -16,7 +19,8 @@ public class SignUp extends JFrame {
 
 
     private void signupButtonPressed(ActionEvent e){
-        //if (e.getSource() == aanmaken)
+        if (e.getSource() == aanmaken) callback.accept(1);
+        if (e.getSource() == ofLogIn) callback.accept(2);
     }
 
 
