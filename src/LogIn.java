@@ -2,20 +2,28 @@ import keeptoo.KGradientPanel;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.util.Objects;
+import java.util.function.Consumer;
 
 public class LogIn extends JFrame {
 
+    public Consumer<Integer> callback;
 
-    private void loginButtonPressed(ActionEvent e){
+
+    public JButton inloggen = new JButton();
+
+    public JButton maakAccount = new JButton("<html><u>Of maak een account</u></html");
+
+    //Kijkt of er buttons gedrukt worden
+    private void ButtonPressed(ActionEvent e){
+
+        if (e.getSource() == inloggen) callback.accept(1);
+        if (e.getSource() == maakAccount) callback.accept(2);
 
     }
 
-    private void signupButtonPressed(ActionEvent e){
 
-    }
-
-
-    public LogIn() {
+    public LogIn(){
 
         //Maken en instellen objects
         //bg.setLayout(new GridLayout());
@@ -34,12 +42,12 @@ public class LogIn extends JFrame {
 
 
         JLabel foto = new JLabel();
-        foto.setIcon(new ImageIcon(getClass().getResource("ComputerCloud512x512.png")));
+        foto.setIcon(new ImageIcon(Objects.requireNonNull(getClass().getResource("ComputerCloud512x512.png"))));
         foto.setBounds(250, 220, 512, 512);
 
 
         JLabel carbonNaam = new JLabel();
-        carbonNaam.setIcon(new ImageIcon(getClass().getResource("CarbonTec100x17.png")));
+        carbonNaam.setIcon(new ImageIcon(Objects.requireNonNull(getClass().getResource("CarbonTec100x17.png"))));
         carbonNaam.setBounds(50, 900, 100, 17);
 
 
@@ -81,7 +89,6 @@ public class LogIn extends JFrame {
         buttonGradient.setGradientFocus(200);
 
 
-        JButton inloggen = new JButton();
         inloggen.setFont(new Font("Segoe UI", 1, 17));
         inloggen.setText("Inloggen                         ");
         inloggen.setOpaque(false);
@@ -90,17 +97,16 @@ public class LogIn extends JFrame {
         buttonGradient.add(inloggen);
         inloggen.setBounds(100,0,300,40);
         inloggen.setForeground(new Color(255,255,255));
-        inloggen.addActionListener(this::loginButtonPressed);
+        inloggen.addActionListener(this::ButtonPressed);
 
 
 
-        JButton maakAccount = new JButton("<html><u>Of maak een account</u></html");
         maakAccount.setFont(new Font("Segoe UI", 0,14));
         maakAccount.setForeground(new Color(179, 179, 179));
         maakAccount.setOpaque(false);
         maakAccount.setBorderPainted(false);
         maakAccount.setContentAreaFilled(false);
-        inloggen.addActionListener(this::signupButtonPressed);
+        maakAccount.addActionListener(this::ButtonPressed);
 
 
 
