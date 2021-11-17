@@ -24,6 +24,10 @@ public class LogIn extends JFrame {
 
 
     public LogIn(){
+        //Resolutie gebruiker zoeken
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        screenSize.width = (int) (screenSize.width*3)/4;
+        screenSize.height = (int) (screenSize.height*3)/4;
 
         //Maken en instellen objects
         //bg.setLayout(new GridLayout());
@@ -38,21 +42,21 @@ public class LogIn extends JFrame {
 
 
         loginBg.setBackground(new java.awt.Color(255, 255, 255));
-        loginBg.setBounds(1100, 100, 500, 750);
+        loginBg.setBounds((screenSize.width*3)/5, screenSize.height/10, 380, 500);
 
 
         JLabel foto = new JLabel();
         foto.setIcon(new ImageIcon(Objects.requireNonNull(getClass().getResource("ComputerCloud512x512.png"))));
-        foto.setBounds(250, 220, 512, 512);
+        foto.setBounds(screenSize.width/15, screenSize.height/12, 512, 512);
 
 
         JLabel carbonNaam = new JLabel();
         carbonNaam.setIcon(new ImageIcon(Objects.requireNonNull(getClass().getResource("CarbonTec100x17.png"))));
-        carbonNaam.setBounds(50, 900, 100, 17);
+        carbonNaam.setBounds(screenSize.width/39, (screenSize.height/10)*9, 100, 17);
 
 
         JLabel logIn = new JLabel();
-        logIn.setFont(new Font("Segoe UI", 1, 20));
+        logIn.setFont(new Font("Segoe UI", 1, 18));
         logIn.setForeground(new Color(102, 102, 102));
         logIn.setText("Log in met uw CarbonTec account");
 
@@ -77,7 +81,7 @@ public class LogIn extends JFrame {
 
 
         JPasswordField loginPwdTxt = new JPasswordField();
-        loginPwdTxt.setFont(new Font("Segoe UI", 0, 14));
+        loginPwdTxt.setFont(new Font("Segoe UI", 0, 15));
         loginPwdTxt.setForeground(new Color(102, 102, 102));
         loginPwdTxt.setBackground(new Color(255,255,255));
         loginPwdTxt.setBorder(BorderFactory.createMatteBorder(0, 0, 2, 0, new Color(12, 91, 160)));
@@ -90,18 +94,18 @@ public class LogIn extends JFrame {
 
 
         inloggen.setFont(new Font("Segoe UI", 1, 17));
-        inloggen.setText("Inloggen                         ");
+        inloggen.setText("Inloggen");
         inloggen.setOpaque(false);
         inloggen.setContentAreaFilled(false);
         inloggen.setBorderPainted(false);
         buttonGradient.add(inloggen);
-        inloggen.setBounds(100,0,300,40);
+        inloggen.setBounds(0, 0, 300, 40);
         inloggen.setForeground(new Color(255,255,255));
         inloggen.addActionListener(this::ButtonPressed);
 
 
 
-        maakAccount.setFont(new Font("Segoe UI", 0,14));
+        maakAccount.setFont(new Font("Segoe UI", 0,15));
         maakAccount.setForeground(new Color(179, 179, 179));
         maakAccount.setOpaque(false);
         maakAccount.setBorderPainted(false);
@@ -116,11 +120,11 @@ public class LogIn extends JFrame {
         loginBlokLayout.setHorizontalGroup(
                 loginBlokLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                 .addGroup(loginBlokLayout.createSequentialGroup()
-                        .addGap(65, 65, 65)
+                        .addGap(screenSize.width/30, screenSize.width/30, screenSize.width/30)
                         .addGroup(loginBlokLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                                 .addComponent(logIn, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                                 .addGroup(loginBlokLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(loginPwd, 100, 375,375)
+                                        .addComponent(loginPwd, screenSize.width/4, screenSize.width/4, screenSize.width/4)
                                         .addComponent(loginEmail)
                                         .addComponent(loginEmailTxt)
                                         .addComponent(loginPwdTxt)
@@ -159,7 +163,7 @@ public class LogIn extends JFrame {
         setTitle("CarbonTec Dashboard");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setResizable(false);
-        setSize(1800, 1000);
+        setSize(screenSize.width, screenSize.height);
         setContentPane(bg);
         getRootPane().setDefaultButton(inloggen);
 
