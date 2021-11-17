@@ -6,7 +6,11 @@ public class MainProgram {
         LogIn logIn = new LogIn();
         logIn.callback = (i) -> {
 
-            System.out.println(i);
+            if (i == 1) {
+                logIn.setVisible(false);
+                Home home = new Home();
+                home.setVisible(true);
+            }
 
 
             if (i == 2) {
