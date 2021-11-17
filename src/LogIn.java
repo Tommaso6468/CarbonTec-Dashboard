@@ -42,12 +42,12 @@ public class LogIn extends JFrame {
 
 
         loginBg.setBackground(new java.awt.Color(255, 255, 255));
-        loginBg.setBounds((screenSize.width*3)/5, screenSize.height/10, 380, 500);
+        loginBg.setBounds((screenSize.width*5)/9, screenSize.height/7, 460, 500);
 
 
         JLabel foto = new JLabel();
-        foto.setIcon(new ImageIcon(Objects.requireNonNull(getClass().getResource("ComputerCloud512x512.png"))));
-        foto.setBounds(screenSize.width/15, screenSize.height/12, 512, 512);
+        foto.setIcon(new ImageIcon(Objects.requireNonNull(getClass().getResource("ComputerCloud300x300.png"))));
+        foto.setBounds(screenSize.width/7, screenSize.height/4, 300, 300);
 
 
         JLabel carbonNaam = new JLabel();
@@ -94,7 +94,7 @@ public class LogIn extends JFrame {
 
 
         inloggen.setFont(new Font("Segoe UI", 1, 17));
-        inloggen.setText("Inloggen");
+        inloggen.setText("           Inloggen");
         inloggen.setOpaque(false);
         inloggen.setContentAreaFilled(false);
         inloggen.setBorderPainted(false);
