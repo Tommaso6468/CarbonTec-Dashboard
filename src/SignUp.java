@@ -41,10 +41,38 @@ public class SignUp extends JFrame {
         carbonNaam.setBounds(50, 900, 100, 17);
 
 
+
         JLabel signup = new JLabel();
         signup.setFont(new Font("Segoe UI", 1, 20));
         signup.setForeground(new Color(102, 102, 102));
         signup.setText("Maak een CarbonTec account aan ");
+
+
+        JLabel signupVoornaam = new JLabel();
+        signupVoornaam.setFont(new Font("Segoe UI", 0, 15));
+        signupVoornaam.setForeground(new Color(102,102,102));
+        signupVoornaam.setText("Voornaam");
+
+
+        JTextField signupVoornaamTxt = new JTextField();
+        signupVoornaamTxt.setFont(new Font("Segoe UI",0,14));
+        signupVoornaamTxt.setForeground(new Color(102,102,102));
+        signupVoornaamTxt.setBackground(new Color(255,255,255));
+        signupVoornaamTxt.setBorder(BorderFactory.createMatteBorder(0,0,2,0,new Color(12,91,160)));
+
+
+        JLabel signupAchternaam = new JLabel();
+        signupAchternaam.setFont(new Font("Segoe UI",0,15));
+        signupAchternaam.setForeground(new Color(102,102,102));
+        signupAchternaam.setText("Achternaam");
+
+
+        JTextField signupAchternaamTxt = new JTextField();
+        signupAchternaamTxt.setFont(new Font("Segoe UI",0,14));
+        signupAchternaamTxt.setForeground(new Color(102,102,102));
+        signupAchternaamTxt.setBackground(new Color(255,255,255));
+        signupAchternaamTxt.setBorder(BorderFactory.createMatteBorder(0,0,2,0,new Color(12,91,160)));
+
 
 
         JLabel signupEmail = new JLabel();
@@ -103,9 +131,13 @@ public class SignUp extends JFrame {
                                 .addGroup(loginBlokLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                                         .addComponent(signup, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                                         .addGroup(loginBlokLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
-                                                .addComponent(signupPwd, 100, 375,375)
+                                                .addComponent(signupVoornaam)
+                                                .addComponent(signupVoornaamTxt)
+                                                .addComponent(signupAchternaam)
+                                                .addComponent(signupAchternaamTxt)
                                                 .addComponent(signupEmail)
                                                 .addComponent(signupEmailTxt)
+                                                .addComponent(signupPwd, 100, 375,375)
                                                 .addComponent(signupPwdTxt)
                                                 .addComponent(buttonGradient, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE)
                                         )
@@ -119,6 +151,16 @@ public class SignUp extends JFrame {
                         .addGroup(loginBlokLayout.createSequentialGroup()
                                 .addGap(50,50,50)
                                 .addComponent(signup)
+                                .addGap(60,60,60)
+                                .addComponent(signupVoornaam)
+                                .addGap(18,18,18)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(signupVoornaamTxt,GroupLayout.PREFERRED_SIZE,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
+                                .addGap(60,60,60)
+                                .addComponent(signupAchternaam)
+                                .addGap(18,18,18)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(signupAchternaamTxt,GroupLayout.PREFERRED_SIZE,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
                                 .addGap(60,60,60)
                                 .addComponent(signupEmail)
                                 .addGap(18,18,18)
