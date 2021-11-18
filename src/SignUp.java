@@ -82,7 +82,7 @@ public class SignUp extends JFrame {
         signupVoornaamTxt.setFont(new Font("Segoe UI",0,screenSize.width/103));
         signupVoornaamTxt.setForeground(new Color(102,102,102));
         signupVoornaamTxt.setBackground(new Color(255,255,255));
-        signupVoornaamTxt.setBorder(BorderFactory.createMatteBorder(0,0,2,0,new Color(12,91,160)));
+        signupVoornaamTxt.setBorder(BorderFactory.createMatteBorder(0, 0, screenSize.width/720, 0, new Color(12, 91, 160)));
 
 
         JLabel signupAchternaam = new JLabel();
@@ -204,7 +204,7 @@ public class SignUp extends JFrame {
                                 .addComponent(signupPwdTxt,GroupLayout.PREFERRED_SIZE,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
                                 .addGap(screenSize.width/29)
                                 .addComponent(buttonGradient, GroupLayout.PREFERRED_SIZE,screenSize.width/33,GroupLayout.PREFERRED_SIZE)
-                                .addGap(screenSize.width/288)
+                                .addGap(screenSize.width/900)
                                 .addComponent(ofLogIn)
                                 .addGap(screenSize.width/29)
                         )
