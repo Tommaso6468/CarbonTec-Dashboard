@@ -60,7 +60,6 @@ public class Home extends JFrame {
         home.setFont(new Font("Segoe UI",1,screenSize.width/80));
         home.setForeground(new Color(0,0,0));
         home.setOpaque(false);
-        home.setBorderPainted(false);
         home.setContentAreaFilled(false);
         home.addActionListener(this::ButtonPressed);
         home.setBorder(BorderFactory.createMatteBorder(0, 0, screenSize.width/720, 0, new Color(12, 91, 160)));
@@ -71,7 +70,7 @@ public class Home extends JFrame {
         apparaten.setBorderPainted(false);
         apparaten.setContentAreaFilled(false);
         apparaten.addActionListener(this::ButtonPressed);
-        apparaten.setBorder(BorderFactory.createMatteBorder(0, 0, screenSize.width/720, 0, new Color(255, 255, 255)));
+        apparaten.setBorder(BorderFactory.createEmptyBorder());
 
 
         GroupLayout navbarLayout = new GroupLayout(navbar);

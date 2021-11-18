@@ -53,12 +53,11 @@ public class Apparaten extends JFrame {
         home.setBorderPainted(false);
         home.setContentAreaFilled(false);
         home.addActionListener(this::ButtonPressed);
-        home.setBorder(BorderFactory.createMatteBorder(0, 0, screenSize.width/720, 0, new Color(255,255,255)));
+        home.setBorder(BorderFactory.createEmptyBorder());
 
         apparaten.setFont(new Font("Segoe UI",1,screenSize.width/80));
         apparaten.setForeground(new Color(0,0,0));
         apparaten.setOpaque(false);
-        apparaten.setBorderPainted(false);
         apparaten.setContentAreaFilled(false);
         apparaten.addActionListener(this::ButtonPressed);
         apparaten.setBorder(BorderFactory.createMatteBorder(0, 0, screenSize.width/720, 0, new Color(12, 91, 160)));
