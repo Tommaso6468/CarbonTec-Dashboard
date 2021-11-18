@@ -47,7 +47,7 @@ public class Apparaten extends JFrame {
         logOut.addActionListener(this::ButtonPressed);
 
 
-        home.setFont(new Font("Segoe UI",1,screenSize.width/22));
+        home.setFont(new Font("Segoe UI",1,screenSize.width/80));
         home.setForeground(new Color(0,0,0));
         home.setOpaque(false);
         home.setBorderPainted(false);
