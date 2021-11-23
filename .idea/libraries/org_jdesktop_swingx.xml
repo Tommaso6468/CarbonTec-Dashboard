@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="org-jdesktop-swingx">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/org-jdesktop-swingx.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
