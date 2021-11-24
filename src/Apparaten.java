@@ -1,6 +1,7 @@
 import keeptoo.KGradientPanel;
 
 import javax.swing.*;
+import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.util.function.Consumer;
@@ -12,6 +13,8 @@ public class Apparaten extends JFrame {
     public JButton home = new JButton("Home");
 
     public JButton apparaten = new JButton("Apparaten");
+
+    public JButton nieuwApparaat = new JButton("Nieuw apparaat");
 
     public Consumer<Integer> callback;
 
@@ -63,6 +66,18 @@ public class Apparaten extends JFrame {
         apparaten.setBorder(BorderFactory.createMatteBorder(0, 0, screenSize.width/720, 0, new Color(12, 91, 160)));
 
 
+        JPanel panel = new JPanel();
+        panel.setBackground(new Color(255,255,255));
+        panel.setBounds(screenSize.width/15, screenSize.height/7, screenSize.width*10/12, screenSize.height*10/14);
+
+
+        JLabel apparatenLbl = new JLabel();
+        apparatenLbl.setFont(new Font("Segoe UI",1,screenSize.width/80));
+        apparatenLbl.setForeground(new Color(0,0,0));
+        apparatenLbl.setText("| Apparaten");
+
+
+
         GroupLayout navbarLayout = new GroupLayout(navbar);
         navbar.setLayout(navbarLayout);
         navbarLayout.setHorizontalGroup(
@@ -93,6 +108,36 @@ public class Apparaten extends JFrame {
         );
 
 
+        GroupLayout panelLayout = new GroupLayout(panel);
+        panel.setLayout(panelLayout);
+        panelLayout.setHorizontalGroup(
+                panelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                        .addGroup(panelLayout.createSequentialGroup()
+                                .addGap(screenSize.width/35)
+                                .addGroup(panelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                                        .addComponent(apparatenLbl)
+                                )
+                                .addGroup(panelLayout.createSequentialGroup()
+                                        .addGap(screenSize.width/30)
+                                        .addGroup(panelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                                                .addComponent(nieuwApparaat)
+                                        )
+                                )
+                        )
+        );
+
+        panelLayout.setVerticalGroup(
+                panelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                        .addGroup(panelLayout.createSequentialGroup()
+                                .addGap(screenSize.height/25)
+                                .addComponent(apparatenLbl)
+                        )
+                        .addGroup(panelLayout.createSequentialGroup()
+                                .addGap(screenSize.height/23)
+                                .addComponent(nieuwApparaat)
+                        )
+        );
+
 
         //Opstellen van scherm
         setTitle("CarbonTec Dashboard");
@@ -107,6 +152,32 @@ public class Apparaten extends JFrame {
 
         //Toevoegen objects
         bg.add(navbar);
+        bg.add(panel);
+    }
+
+    private static class RoundedBorder implements Border {
+
+        private int radius;
+
+        RoundedBorder(int radius) {
+            this.radius = radius;
+        }
+        @Override
+        public Insets getBorderInsets(Component c) {
+            return new Insets(this.radius+1, this.radius+1, this.radius+2, this.radius);
+        }
+
+        @Override
+        public boolean isBorderOpaque() {
+            return true;
+        }
+
+        @Override
+        public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) {
+            g.drawRoundRect(x,y,width-1,height-1,radius,radius);
+
+        }
+
     }
 
 

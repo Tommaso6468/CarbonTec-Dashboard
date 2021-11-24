@@ -196,19 +196,18 @@ public class Home extends JFrame {
         GaugeChart gaugeChart1 = new GaugeChart();
         gaugeChart1.setColor1(new Color(252, 92, 125));
         gaugeChart1.setColor2(new Color(106, 130, 251));
-        gaugeChart1.setSize(screenSize.height/200,screenSize.height/200);
+//        gaugeChart1.setSize(screenSize.height/200,screenSize.height/200);
         int percentageOnline = (int) Math.round((double) apparatenOnline / totaalApparaten * 100);
         gaugeChart1.setValue(percentageOnline);
-        gaugeChart1.setLocation(screenSize.width/10,screenSize.height/10);
+//        gaugeChart1.setLocation(screenSize.width/10,screenSize.height/10);
         linkerGauge.add(gaugeChart1);
-
 
         GaugeChart gaugeChart2 = new GaugeChart();
         gaugeChart2.setColor1(new Color(252, 92, 125));
         gaugeChart2.setColor2(new Color(106, 130, 251));
-        gaugeChart2.setSize(screenSize.height/200,screenSize.height/200);
+//        gaugeChart2.setSize(screenSize.height/20,screenSize.height/20);
         gaugeChart2.setValue(uptime);
-        gaugeChart2.setLocation(screenSize.width/10,screenSize.height/10);
+//        gaugeChart2.setLocation(screenSize.width/50,screenSize.height/50);
         rechterGauge.add(gaugeChart2);
 
 
@@ -408,7 +407,7 @@ public class Home extends JFrame {
             screenSize.width = (int) (screenSize.width*3)/4;
             screenSize.height = (int) (screenSize.height*3)/4;
             setFont(new JLabel().getFont().deriveFont(0, screenSize.width/72));
-            setPreferredSize(new Dimension(250, 220));
+            setPreferredSize(new Dimension(225, 220));
             setForeground(new Color(60, 60, 60));
             TimingTarget target = new TimingTargetAdapter() {
                 @Override
