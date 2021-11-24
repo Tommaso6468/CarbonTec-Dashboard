@@ -76,6 +76,12 @@ public class Apparaten extends JFrame {
         apparatenLbl.setForeground(new Color(0,0,0));
         apparatenLbl.setText("| Apparaten");
 
+        nieuwApparaat.setFont(new Font("Segoe UI",1,screenSize.width/96));
+        nieuwApparaat.setContentAreaFilled(false);
+        nieuwApparaat.setOpaque(false);
+        nieuwApparaat.setForeground(new Color(12, 91, 160));
+        nieuwApparaat.setBorder(new Apparaten.RoundedBorder(5));
+        nieuwApparaat.addActionListener(this::ButtonPressed);
 
 
         GroupLayout navbarLayout = new GroupLayout(navbar);

@@ -184,12 +184,12 @@ public class Home extends JFrame {
 
 
         JPanel linkerGauge = new JPanel();
-        linkerGauge.setBounds(screenSize.width*10/19, screenSize.height*40/74, screenSize.width*10/48, screenSize.height*10/35);
+        linkerGauge.setBounds(screenSize.width*10/19, screenSize.height*40/68, screenSize.width*10/48, screenSize.height*10/35);
         linkerGauge.setBackground(new Color(255,255,255));
 
 
         JPanel rechterGauge = new JPanel();
-        rechterGauge.setBounds(screenSize.width*30/41, screenSize.height*40/74, screenSize.width*10/48, screenSize.height*10/35);
+        rechterGauge.setBounds(screenSize.width*30/41, screenSize.height*40/68, screenSize.width*10/48, screenSize.height*10/35);
         rechterGauge.setBackground(new Color(255,255,255));
 
 
