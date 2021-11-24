@@ -21,7 +21,11 @@ public class MainProgram {
 
             if (loginReturn == 1) {
                 logIn.setVisible(false);
-                homeScherm();
+                try {
+                    homeScherm();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
 
 
@@ -50,7 +54,11 @@ public class MainProgram {
 
             if (signupReturn == 1){
                 signUp.setVisible(false);
-                homeScherm();
+                try {
+                    homeScherm();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
 
             if (signupReturn == 2){
@@ -68,7 +76,7 @@ public class MainProgram {
 
 
 
-    public static void homeScherm(){
+    public static void homeScherm() throws InterruptedException {
 
         Home home = new Home();
         home.setVisible(true);
@@ -89,7 +97,11 @@ public class MainProgram {
 
             if (homeReturn == 2){
                 home.setVisible(false);
-                homeScherm();
+                try {
+                    homeScherm();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
 
             if (homeReturn == 3){
@@ -122,7 +134,11 @@ public class MainProgram {
 
             if (apparatenReturn == 2){
                 apparaten.setVisible(false);
-                homeScherm();
+                try {
+                    homeScherm();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
 
             if (apparatenReturn == 3){
