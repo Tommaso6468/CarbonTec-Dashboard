@@ -49,10 +49,10 @@ public class Home extends JFrame {
     public String vierSterren = sterLeeg + sterVol + sterVol + sterVol + sterVol;
     public String vijfSterren = sterVol + sterVol + sterVol + sterVol + sterVol;
 
-    public int apparatenOnline = 5; // Dit moet aan db gekoppeld worden
+    public int apparatenOnline = 7; // Dit moet aan db gekoppeld worden
     public int totaalApparaten = 10; // Dit moet aan db gekoppeld worden
 
-    public int uptime = 97; // Procenten
+    public int uptime = 93; // Procenten
 
     private void ButtonPressed(ActionEvent e){
         if (e.getSource() == logOut) callback.accept(1);
@@ -210,6 +210,19 @@ public class Home extends JFrame {
 //        gaugeChart2.setLocation(screenSize.width/50,screenSize.height/50);
         rechterGauge.add(gaugeChart2);
 
+        JLabel verbondenLbl = new JLabel();
+        verbondenLbl.setFont(new Font("Segoe UI", 1, screenSize.width/96));
+        verbondenLbl.setForeground(Color.BLACK);
+        verbondenLbl.setText("Verbonden apparaten");
+        verbondenLbl.setBounds(screenSize.height*40/39, screenSize.width*10/34, screenSize.width/5,screenSize.height/10);
+
+
+        JLabel uptimeLbl = new JLabel();
+        uptimeLbl.setFont(new Font("Segoe UI", 1, screenSize.width/96));
+        uptimeLbl.setForeground(Color.BLACK);
+        uptimeLbl.setText("Uptime");
+        uptimeLbl.setBounds(screenSize.height*100/69, screenSize.width*10/34, screenSize.width/5,screenSize.height/10);
+
 
         GroupLayout navbarLayout = new GroupLayout(navbar);
         navbar.setLayout(navbarLayout);
@@ -330,6 +343,8 @@ public class Home extends JFrame {
 
         //Toevoegen objects
         bg.add(navbar);
+        bg.add(verbondenLbl);
+        bg.add(uptimeLbl);
         bg.add(apparatenpanel);
         bg.add(gezondheidspanel);
         bg.add(linkerGauge);
