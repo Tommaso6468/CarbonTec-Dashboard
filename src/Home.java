@@ -407,7 +407,7 @@ public class Home extends JFrame {
             screenSize.width = (int) (screenSize.width*3)/4;
             screenSize.height = (int) (screenSize.height*3)/4;
             setFont(new JLabel().getFont().deriveFont(0, screenSize.width/72));
-            setPreferredSize(new Dimension(250, 220));
+            setPreferredSize(new Dimension(150, 132));
             setForeground(new Color(60, 60, 60));
             TimingTarget target = new TimingTargetAdapter() {
                 @Override
