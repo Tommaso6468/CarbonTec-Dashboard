@@ -4,12 +4,8 @@ import java.util.function.Consumer;
 public class MainProgram {
 
     public static void main(String[] args) throws IOException {
-        losapparaatScherm();
 
-
-        // haal de streepjes hieronder voor loginscherm weg als je t normale progamma wil
-        // loginScherm();
-
+        loginScherm();
 
     }
 
@@ -154,43 +150,4 @@ public class MainProgram {
 
     }
 
-    public static void losapparaatScherm () {
-
-
-        LosApparaat losApparaat = new LosApparaat();
-        losApparaat.setVisible(true);
-
-        losApparaat.callback = (losApparaatReturn) -> {
-
-            //1 is logout
-            //2 is home
-            //3 is apparaten
-            if (losApparaatReturn == 1){
-                losApparaat.setVisible(false);
-                try {
-                    loginScherm();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-
-            if (losApparaatReturn == 2){
-                losApparaat.setVisible(false);
-                homeScherm();
-            }
-
-            if (losApparaatReturn == 3){
-                losApparaat.setVisible(false);
-                apparatenScherm();
-            }
-
-        };
-
-
-
-    }
-
-
-
 }
-
