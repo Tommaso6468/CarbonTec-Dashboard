@@ -1,2 +1,5 @@
 
 out/
+*.jar
+out/artifacts/CarbonTec_Dashboard_jar/CarbonTec-Dashboard.jar
+out/production/CarbonTec-Dashboard/MainProgram.class
