@@ -4,11 +4,8 @@ import java.util.function.Consumer;
 public class MainProgram {
 
     public static void main(String[] args) throws IOException {
-        losapparaatScherm();
-
-
-        // haal de streepjes hieronder voor loginscherm weg als je t normale progamma wil
-        // loginScherm();
+        
+        loginScherm();
 
 
     }
