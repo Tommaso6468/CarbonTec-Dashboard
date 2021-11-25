@@ -171,7 +171,11 @@ public class MainProgram {
 
             if (losApparaatReturn == 2){
                 losApparaat.setVisible(false);
-                //homeScherm();
+                try {
+                    homeScherm();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
 
             if (losApparaatReturn == 3){
