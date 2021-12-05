@@ -1,11 +1,10 @@
 import java.io.IOException;
-import java.util.function.Consumer;
 
 public class MainProgram {
 
     public static void main(String[] args) throws IOException {
-
-        loginScherm();
+        NieuwApparaatScherm();
+        //loginScherm();
 
     }
 
@@ -189,4 +188,29 @@ public class MainProgram {
 
     }
 
+    public static void NieuwApparaatScherm() throws IOException {
+
+        //1 is aanmaken
+        //2 is terug naar login
+        NieuwApparaat NieuwApparaat = new NieuwApparaat();
+        NieuwApparaat.setVisible(true);
+        NieuwApparaat.callback = (NieuwApparaatReturn) -> {
+
+            if (NieuwApparaatReturn == 1){
+                NieuwApparaat.setVisible(false);
+                try {
+                    homeScherm();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            if (NieuwApparaatReturn == 2){
+                NieuwApparaat.setVisible(false);
+                losapparaatScherm();
+            }
+
+        };
+
+    }
 }
