@@ -14,11 +14,17 @@ public class NieuwApparaat extends JFrame {
 
     public JButton apparaten = new JButton("Apparaten");
 
-    public JButton ofVoegToe = new JButton();
+    public JButton VoegToe = new JButton();
 
     public Consumer<Integer> callback;
 
     private void ButtonPressed(ActionEvent e){
+        if (e.getSource() == logOut) callback.accept(1);
+        if (e.getSource() == home) callback.accept(2);
+        if (e.getSource() == apparaten) callback.accept(3);
+    }
+
+    private void addButtonPressed(ActionEvent e){
         if (e.getSource() == logOut) callback.accept(1);
         if (e.getSource() == home) callback.accept(2);
         if (e.getSource() == apparaten) callback.accept(3);
@@ -48,6 +54,7 @@ public class NieuwApparaat extends JFrame {
         buttonGradient.setGradientFocus(200);
         buttonGradient.setSize(screenSize.width/4, screenSize.height/20);
 
+
         logOut.setFont(new Font("Segoe UI", 0,screenSize.width/96));
         logOut.setForeground(new Color(102, 102, 102));
         logOut.setOpaque(false);
@@ -71,15 +78,15 @@ public class NieuwApparaat extends JFrame {
         apparaten.addActionListener(this::ButtonPressed);
         apparaten.setBorder(BorderFactory.createMatteBorder(0, 0, screenSize.width/720, 0, new Color(12, 91, 160)));
 
-        ofVoegToe.setFont(new Font("Segoe UI", 1, screenSize.width/85));
-        ofVoegToe.setText("Voeg toe ");
-        ofVoegToe.setOpaque(false);
-        ofVoegToe.setContentAreaFilled(false);
-        ofVoegToe.setBorderPainted(false);
-        ofVoegToe.setSize(buttonGradient.getWidth(), buttonGradient.getHeight());
-        ofVoegToe.setForeground(new Color(179,179,179));
-        ofVoegToe.addActionListener(this::ButtonPressed);
-        buttonGradient.add(ofVoegToe);
+        VoegToe.setFont(new Font("Segoe UI", 1, screenSize.width/85));
+        VoegToe.setText("Voeg toe");
+        VoegToe.setOpaque(false);
+        VoegToe.setContentAreaFilled(false);
+        VoegToe.setBorderPainted(false);
+        VoegToe.setSize(buttonGradient.getWidth(), buttonGradient.getHeight());
+        VoegToe.setForeground(new Color(179,179,179));
+        VoegToe.addActionListener(this::ButtonPressed);
+        buttonGradient.add(VoegToe);
 
 
         JPanel panel = new JPanel();
@@ -164,7 +171,7 @@ public class NieuwApparaat extends JFrame {
                                                 .addComponent(NieuwApparaatLoginSerienummer)
                                                 .addComponent(NieuwApparaatLoginSerienummerTxt)
                                                 .addComponent(buttonGradient, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE)
-                                                .addComponent(ofVoegToe, GroupLayout.Alignment.CENTER,GroupLayout.DEFAULT_SIZE,GroupLayout.DEFAULT_SIZE,GroupLayout.DEFAULT_SIZE)
+                                                .addComponent(VoegToe, GroupLayout.Alignment.CENTER,GroupLayout.DEFAULT_SIZE,GroupLayout.DEFAULT_SIZE,GroupLayout.DEFAULT_SIZE)
                                         )
                         )
         )
@@ -188,7 +195,7 @@ public class NieuwApparaat extends JFrame {
                                 .addGap(screenSize.height/29)
                                 .addComponent(buttonGradient, GroupLayout.PREFERRED_SIZE,screenSize.width/33,GroupLayout.PREFERRED_SIZE)
                                 .addGap(screenSize.height/900)
-                                .addComponent(ofVoegToe)
+                                .addComponent(VoegToe)
                                 .addGap(screenSize.height/29)
                         )
         );
@@ -200,7 +207,7 @@ public class NieuwApparaat extends JFrame {
         setResizable(false);
         setSize(screenSize.width, screenSize.height);
         setContentPane(bg);
-        getRootPane().setDefaultButton(ofVoegToe);
+        getRootPane().setDefaultButton(VoegToe);
 
         //Toevoegen image
         ImageIcon imageIcon = new ImageIcon("Icon.png");
