@@ -29,7 +29,7 @@ public class LogIn extends JFrame {
 
         if (e.getSource() == inloggen) {
             if (loginEmailTxt.getDocument().getLength() < 1) return;
-            if (loginPwdTxt.getDocument().getLength() < 1) return;
+            if (loginPwdTxt.getDocument().getLength() < 8) return;
             if (!loginEmailTxt.getText().matches(EMAIL_PATTERN)) return;
             callback.accept(1);
         }
