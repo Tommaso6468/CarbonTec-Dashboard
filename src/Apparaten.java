@@ -184,6 +184,17 @@ public class Apparaten extends JFrame {
 
         }
 
+
+        public class Apparaat extends JFrame {
+
+        public JButton dag = new JButton("dag");
+
+        public JButton week = new JButton("week");
+
+        public JButton maand = new JButton("maand");
+
+
+
     }
 
 
