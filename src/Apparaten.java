@@ -2,8 +2,18 @@ import keeptoo.KGradientPanel;
 
 import javax.swing.*;
 import javax.swing.border.Border;
+import javax.swing.border.EmptyBorder;
+import javax.swing.plaf.basic.BasicScrollBarUI;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.TableCellRenderer;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.Arrays;
 import java.util.function.Consumer;
 
 public class Apparaten extends JFrame {
@@ -16,12 +26,20 @@ public class Apparaten extends JFrame {
 
     public JButton nieuwApparaat = new JButton("Nieuw apparaat");
 
-    public Consumer<Integer> callback;
+    public static String data[][] = new String[1000][1000];
+    public String col[] = {"Serienummer","Naam","Bekijk"};
+    public JTable apparatenLijst = new JTable(data,col);
+
+    public int ApparaatNummer = 0;
+    public static int ValueY;
+
+    public static Consumer<Integer> callback;
 
     private void ButtonPressed(ActionEvent e){
         if (e.getSource() == logOut) callback.accept(1);
         if (e.getSource() == home) callback.accept(2);
         if (e.getSource() == apparaten) callback.accept(3);
+        if (e.getSource() == nieuwApparaat) callback.accept(4);
     }
 
     public Apparaten(){
@@ -31,6 +49,19 @@ public class Apparaten extends JFrame {
         screenSize.width = (int) (screenSize.width*3)/4;
         screenSize.height = (int) (screenSize.height*3)/4;
 
+
+        String path = "apparaten.csv";
+        String line = "";
+        int counter = 0;
+        try {
+            BufferedReader br = new BufferedReader(new FileReader(path));
+            while ((line = br.readLine()) != null){
+                data[counter] = line.split(",");
+                counter++;
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
 
         KGradientPanel bg = new KGradientPanel();
@@ -114,6 +145,26 @@ public class Apparaten extends JFrame {
         );
 
 
+        JScrollPane scrollPane = new JScrollPane(apparatenLijst);
+        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+        centerRenderer.setHorizontalAlignment( JLabel.RIGHT );
+        apparatenLijst.getColumnModel().getColumn(2).setCellRenderer( centerRenderer );
+        apparatenLijst.setBackground(new Color(255,255,255));
+        apparatenLijst.setTableHeader(null);
+        apparatenLijst.setBorder(BorderFactory.createMatteBorder(0, 0, screenSize.width/720, 0, new Color(255, 255, 255)));
+        apparatenLijst.setGridColor(new Color(255,255,255));
+        apparatenLijst.setShowHorizontalLines(false);
+        apparatenLijst.setShowVerticalLines(false);
+        scrollPane.getViewport().setBackground(new Color(255,255,255));
+        scrollPane.setVerticalScrollBar(new ScrollBarCustom());
+        apparatenLijst.setRowHeight(screenSize.height/20);
+//        apparatenLijst.setEnabled(false);
+        apparatenLijst.getColumnModel().getColumn(2).setCellRenderer(new ButtonRenderer());
+        apparatenLijst.getColumnModel().getColumn(2).setCellEditor(new ButtonEditor(new JTextField()));
+        apparatenLijst.getColumnModel().getColumn(1).setCellEditor(new ButtonEditor2(new JTextField()));
+        apparatenLijst.getColumnModel().getColumn(0).setCellEditor(new ButtonEditor2(new JTextField()));
+
+
         GroupLayout panelLayout = new GroupLayout(panel);
         panel.setLayout(panelLayout);
         panelLayout.setHorizontalGroup(
@@ -122,13 +173,10 @@ public class Apparaten extends JFrame {
                                 .addGap(screenSize.width/35)
                                 .addGroup(panelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                                         .addComponent(apparatenLbl)
+                                        .addComponent(scrollPane)
+                                        .addComponent(nieuwApparaat)
                                 )
-                                .addGroup(panelLayout.createSequentialGroup()
-                                        .addGap(screenSize.width/30)
-                                        .addGroup(panelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                                                .addComponent(nieuwApparaat)
-                                        )
-                                )
+                                .addGap(screenSize.width/35)
                         )
         );
 
@@ -137,10 +185,11 @@ public class Apparaten extends JFrame {
                         .addGroup(panelLayout.createSequentialGroup()
                                 .addGap(screenSize.height/25)
                                 .addComponent(apparatenLbl)
-                        )
-                        .addGroup(panelLayout.createSequentialGroup()
-                                .addGap(screenSize.height/23)
+                                .addGap(screenSize.height/60)
+                                .addComponent(scrollPane)
+                                .addGap(screenSize.height/60)
                                 .addComponent(nieuwApparaat)
+                                .addGap(screenSize.height/40)
                         )
         );
 
@@ -187,4 +236,229 @@ public class Apparaten extends JFrame {
     }
 
 
+}
+
+class ModernScrollBarUI extends BasicScrollBarUI {
+
+    private final int THUMB_SIZE = 80;
+
+    @Override
+    protected Dimension getMaximumThumbSize() {
+        if (scrollbar.getOrientation() == JScrollBar.VERTICAL) {
+            return new Dimension(0, THUMB_SIZE);
+        } else {
+            return new Dimension(THUMB_SIZE, 0);
+        }
+    }
+
+    @Override
+    protected Dimension getMinimumThumbSize() {
+        if (scrollbar.getOrientation() == JScrollBar.VERTICAL) {
+            return new Dimension(0, THUMB_SIZE);
+        } else {
+            return new Dimension(THUMB_SIZE, 0);
+        }
+    }
+
+    @Override
+    protected JButton createIncreaseButton(int i) {
+        return new ScrollBarButton();
+    }
+
+    @Override
+    protected JButton createDecreaseButton(int i) {
+        return new ScrollBarButton();
+    }
+
+    @Override
+    protected void paintTrack(Graphics grphcs, JComponent jc, Rectangle rctngl) {
+
+    }
+
+    @Override
+    protected void paintThumb(Graphics grphcs, JComponent jc, Rectangle rctngl) {
+        Graphics2D g2 = (Graphics2D) grphcs;
+        g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+        int x = rctngl.x;
+        int y = rctngl.y;
+        int width = rctngl.width;
+        int height = rctngl.height;
+        if (scrollbar.getOrientation() == JScrollBar.VERTICAL) {
+            y += 8;
+            height -= 16;
+        } else {
+            x += 8;
+            width -= 16;
+        }
+        g2.setColor(scrollbar.getForeground());
+        g2.fillRoundRect(x, y, width, height, 1, 1);
+    }
+
+    private class ScrollBarButton extends JButton {
+
+        public ScrollBarButton() {
+            setBorder(BorderFactory.createEmptyBorder());
+        }
+
+        @Override
+        public void paint(Graphics grphcs) {
+        }
+    }
+}
+
+class ScrollBarCustom extends JScrollBar {
+
+    public ScrollBarCustom() {
+        setUI(new ModernScrollBarUI());
+        setPreferredSize(new Dimension(5, 5));
+        setForeground(new Color(94, 139, 231));
+        setUnitIncrement(20);
+        setOpaque(false);
+    }
+}
+
+class TableHeader extends JLabel {
+
+    public TableHeader(String text) {
+        super(text);
+        setOpaque(true);
+        setBackground(Color.WHITE);
+        setFont(new Font("sansserif", 1, 12));
+        setForeground(new Color(102, 102, 102));
+        setBorder(new EmptyBorder(10, 5, 10, 5));
+    }
+
+    @Override
+    protected void paintComponent(Graphics grphcs) {
+        super.paintComponent(grphcs);
+        Graphics2D g2 = (Graphics2D) grphcs;
+        g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+        g2.setColor(new Color(230, 230, 230));
+        g2.drawLine(0, getHeight() - 1, getWidth(), getHeight() - 1);
+    }
+}
+
+class ButtonRenderer extends JButton implements TableCellRenderer
+{
+
+    public ButtonRenderer() {
+        setOpaque(true);
+        setBackground(new Color(179, 188, 196));
+    }
+    @Override
+    public Component getTableCellRendererComponent(JTable table, Object obj,
+                                                   boolean selected, boolean focused, int row, int col) {
+
+        setText((obj==null) ? "":obj.toString());
+
+        return this;
+    }
+
+}
+
+class ButtonEditor extends DefaultCellEditor
+{
+    protected JButton btn;
+    private String lbl;
+    private Boolean clicked;
+
+    public ButtonEditor(JTextField txt) {
+        super(txt);
+
+        btn=new JButton();
+        btn.setOpaque(true);
+        btn.setBackground(new Color(179, 188, 196));
+
+        btn.addActionListener(e -> fireEditingStopped());
+    }
+
+    @Override
+    public Component getTableCellEditorComponent(JTable table, Object obj,
+                                                 boolean selected, int row, int col) {
+
+        lbl=(obj==null) ? "":obj.toString();
+        btn.setText(lbl);
+        clicked=true;
+        return btn;
+    }
+
+    @Override
+    public Object getCellEditorValue() {
+
+        if(clicked)
+        {
+            int yButton = Math.toIntExact(btn.getY()/40);
+            String gekozenApparaat = Apparaten.data[yButton][0];
+            MainProgram.gekozenLosApparaat = gekozenApparaat;
+            Apparaten.ValueY = yButton;
+            Apparaten.callback.accept(5);
+        }
+        clicked=false;
+        return new String(lbl);
+    }
+
+    @Override
+    public boolean stopCellEditing() {
+
+        clicked=false;
+        return super.stopCellEditing();
+    }
+
+    @Override
+    protected void fireEditingStopped() {
+        super.fireEditingStopped();
+    }
+}
+
+class ButtonEditor2 extends DefaultCellEditor
+{
+    protected JButton btn;
+    private String lbl;
+    private Boolean clicked;
+
+    public ButtonEditor2(JTextField txt) {
+        super(txt);
+
+        btn=new JButton();
+        btn.setOpaque(true);
+        btn.setBackground(new Color(179, 188, 196));
+
+        btn.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                fireEditingStopped();
+            }
+        });
+    }
+
+    @Override
+    public Component getTableCellEditorComponent(JTable table, Object obj,
+                                                 boolean selected, int row, int col) {
+
+        lbl=(obj==null) ? "":obj.toString();
+        btn.setText(lbl);
+        clicked=true;
+        return btn;
+    }
+
+    @Override
+    public Object getCellEditorValue() {
+
+        clicked=false;
+        return new String(lbl);
+    }
+
+    @Override
+    public boolean stopCellEditing() {
+
+        clicked=false;
+        return super.stopCellEditing();
+    }
+
+    @Override
+    protected void fireEditingStopped() {
+        super.fireEditingStopped();
+    }
 }

@@ -23,6 +23,8 @@ public class LosApparaat extends JFrame {
 
     public LosApparaat(){
 
+        String apparaatNummer = MainProgram.gekozenLosApparaat;
+
         //Resolutie gebruiker zoeken
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         screenSize.width = (int) (screenSize.width*3)/4;
