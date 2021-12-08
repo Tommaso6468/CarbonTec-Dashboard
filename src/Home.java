@@ -5,6 +5,9 @@ import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.geom.Arc2D;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.Random;
 import java.util.function.Consumer;
 import java.awt.Color;
@@ -23,6 +26,8 @@ import java.awt.geom.Path2D;
 import java.awt.geom.Rectangle2D;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
+import javax.swing.table.DefaultTableCellRenderer;
+
 import org.jdesktop.animation.timing.Animator;
 import org.jdesktop.animation.timing.TimingTarget;
 import org.jdesktop.animation.timing.TimingTargetAdapter;
@@ -36,7 +41,7 @@ public class Home extends JFrame {
 
     public JButton alleApparaten = new JButton("Alle apparaten");
 
-    public Consumer<Integer> callback;
+    public static Consumer<Integer> callback;
 
     public Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 
@@ -54,6 +59,13 @@ public class Home extends JFrame {
 
     public int uptime = 93; // Procenten
 
+    public static String data[][] = new String[1000][1000];
+    public String col[] = {"Serienummer","Naam","Bekijk"};
+    public JTable apparatenLijst = new JTable(data,col);
+
+    public int ApparaatNummer = 0;
+    public static int ValueY;
+
     private void ButtonPressed(ActionEvent e){
         if (e.getSource() == logOut) callback.accept(1);
         if (e.getSource() == home) callback.accept(2);
@@ -69,6 +81,19 @@ public class Home extends JFrame {
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         screenSize.width = (int) (screenSize.width*3)/4;
         screenSize.height = (int) (screenSize.height*3)/4;
+
+        String path = "apparaten.csv";
+        String line = "";
+        int counter = 0;
+        try {
+            BufferedReader br = new BufferedReader(new FileReader(path));
+            while ((line = br.readLine()) != null){
+                data[counter] = line.split(",");
+                counter++;
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         KGradientPanel bg = new KGradientPanel();
         bg.setStartColor(new Color(252, 92, 125));
@@ -252,6 +277,24 @@ public class Home extends JFrame {
                         )
         );
 
+        JScrollPane scrollPane = new JScrollPane(apparatenLijst);
+        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+        centerRenderer.setHorizontalAlignment( JLabel.RIGHT );
+        apparatenLijst.getColumnModel().getColumn(2).setCellRenderer( centerRenderer );
+        apparatenLijst.setBackground(new Color(255,255,255));
+        apparatenLijst.setTableHeader(null);
+        apparatenLijst.setBorder(BorderFactory.createMatteBorder(0, 0, screenSize.width/720, 0, new Color(255, 255, 255)));
+        apparatenLijst.setGridColor(new Color(255,255,255));
+        apparatenLijst.setShowHorizontalLines(false);
+        apparatenLijst.setShowVerticalLines(false);
+        scrollPane.getViewport().setBackground(new Color(255,255,255));
+        scrollPane.setVerticalScrollBar(new ScrollBarCustom());
+        apparatenLijst.setRowHeight(screenSize.height/20);
+//        apparatenLijst.setEnabled(false);
+        apparatenLijst.getColumnModel().getColumn(2).setCellRenderer(new ButtonRenderer());
+        apparatenLijst.getColumnModel().getColumn(2).setCellEditor(new ButtonEditorHome(new JTextField()));
+        apparatenLijst.getColumnModel().getColumn(1).setCellEditor(new ButtonEditor2(new JTextField()));
+        apparatenLijst.getColumnModel().getColumn(0).setCellEditor(new ButtonEditor2(new JTextField()));
 
         GroupLayout apparatenLayout = new GroupLayout(apparatenpanel);
         apparatenpanel.setLayout(apparatenLayout);
@@ -261,10 +304,12 @@ public class Home extends JFrame {
                                 .addGap(screenSize.width/30)
                                 .addGroup(apparatenLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                                         .addComponent(apparatenlbl, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(scrollPane)
                                         .addGroup(apparatenLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
                                                 .addComponent(alleApparaten)
                                         )
                                 )
+                                .addGap(screenSize.width/30)
                         )
         );
 
@@ -274,8 +319,11 @@ public class Home extends JFrame {
                         .addGroup(apparatenLayout.createSequentialGroup()
                                 .addGap(screenSize.height/30)
                                 .addComponent(apparatenlbl)
-                                .addGap(screenSize.height*10/18)
+                                .addGap(screenSize.height/30)
+                                .addComponent(scrollPane)
+                                .addGap(screenSize.height/30)
                                 .addComponent(alleApparaten)
+                                .addGap(screenSize.height/30)
                         )
         );
 
@@ -570,4 +618,58 @@ public class Home extends JFrame {
 
 
 
+}
+
+class ButtonEditorHome extends DefaultCellEditor
+{
+    protected JButton btn;
+    private String lbl;
+    private Boolean clicked;
+
+    public ButtonEditorHome(JTextField txt) {
+        super(txt);
+
+        btn=new JButton();
+        btn.setOpaque(true);
+        btn.setBackground(new Color(179, 188, 196));
+
+        btn.addActionListener(e -> fireEditingStopped());
+    }
+
+    @Override
+    public Component getTableCellEditorComponent(JTable table, Object obj,
+                                                 boolean selected, int row, int col) {
+
+        lbl=(obj==null) ? "":obj.toString();
+        btn.setText(lbl);
+        clicked=true;
+        return btn;
+    }
+
+    @Override
+    public Object getCellEditorValue() {
+
+        if(clicked)
+        {
+            int yButton = Math.toIntExact(btn.getY()/40);
+            String gekozenApparaat = Apparaten.data[yButton][0];
+            MainProgram.gekozenLosApparaat = gekozenApparaat;
+            Home.ValueY = yButton;
+            Home.callback.accept(5);
+        }
+        clicked=false;
+        return new String(lbl);
+    }
+
+    @Override
+    public boolean stopCellEditing() {
+
+        clicked=false;
+        return super.stopCellEditing();
+    }
+
+    @Override
+    protected void fireEditingStopped() {
+        super.fireEditingStopped();
+    }
 }

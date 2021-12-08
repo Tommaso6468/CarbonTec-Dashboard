@@ -1,13 +1,17 @@
+import java.io.File;
 import java.io.IOException;
 import java.util.function.Consumer;
 
 public class MainProgram {
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException{
 
         loginScherm();
+        File fm = new File("apparaten.csv");
 
     }
+
+    public static String gekozenLosApparaat;
 
 
 
@@ -86,6 +90,7 @@ public class MainProgram {
             //1 is logout
             //2 is home
             //3 is apparaten
+            //5 is los apparaat
             if (homeReturn == 1){
                 home.setVisible(false);
                 try {
@@ -109,6 +114,11 @@ public class MainProgram {
                 apparatenScherm();
             }
 
+            if (homeReturn == 5){
+                home.setVisible(false);
+                losapparaatScherm();
+            }
+
         };
 
     }
@@ -123,6 +133,7 @@ public class MainProgram {
             //1 is logout
             //2 is home
             //3 is apparaten
+            //4 is nieuw apparaat
             if (apparatenReturn == 1){
                 apparaten.setVisible(false);
                 try {
@@ -144,6 +155,16 @@ public class MainProgram {
             if (apparatenReturn == 3){
                 apparaten.setVisible(false);
                 apparatenScherm();
+            }
+
+            if (apparatenReturn == 4){
+                apparaten.setVisible(false);
+                nieuwapparaatScherm();
+            }
+
+            if (apparatenReturn == 5){
+                apparaten.setVisible(false);
+                losapparaatScherm();
             }
 
         };
@@ -180,6 +201,46 @@ public class MainProgram {
 
             if (losApparaatReturn == 3){
                 losApparaat.setVisible(false);
+                apparatenScherm();
+            }
+
+        };
+
+
+
+    }
+
+    public static void nieuwapparaatScherm () {
+
+
+        NieuwApparaat nieuwApparaat = new NieuwApparaat();
+        nieuwApparaat.setVisible(true);
+
+        nieuwApparaat.callback = (nieuwApparaatReturn) -> {
+
+            //1 is logout
+            //2 is home
+            //3 is apparaten
+            if (nieuwApparaatReturn == 1){
+                nieuwApparaat.setVisible(false);
+                try {
+                    loginScherm();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            if (nieuwApparaatReturn == 2){
+                nieuwApparaat.setVisible(false);
+                try {
+                    homeScherm();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            if (nieuwApparaatReturn == 3){
+                nieuwApparaat.setVisible(false);
                 apparatenScherm();
             }
 

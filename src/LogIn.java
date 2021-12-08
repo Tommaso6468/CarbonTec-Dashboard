@@ -2,6 +2,9 @@ import keeptoo.KGradientPanel;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
+import javax.swing.text.AttributeSet;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.PlainDocument;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.image.BufferedImage;
@@ -18,16 +21,30 @@ public class LogIn extends JFrame {
 
     public JButton maakAccount = new JButton("<html><u>Of maak een account</u></html");
 
+    public JTextField loginEmailTxt = new JTextField();
+    public JPasswordField loginPwdTxt = new JPasswordField();
+
     //Kijkt of er buttons gedrukt worden
     private void ButtonPressed(ActionEvent e){
 
-        if (e.getSource() == inloggen) callback.accept(1);
+        if (e.getSource() == inloggen) {
+            if (loginEmailTxt.getDocument().getLength() < 1) return;
+            if (loginPwdTxt.getDocument().getLength() < 1) return;
+            if (!loginEmailTxt.getText().matches(EMAIL_PATTERN)) return;
+            callback.accept(1);
+        }
         if (e.getSource() == maakAccount) callback.accept(2);
 
     }
 
+    private static final String EMAIL_PATTERN =
+            "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+                    + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
+
 
     public LogIn() throws IOException {
+
+
         //Resolutie gebruiker zoeken
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         screenSize.width = (int) (screenSize.width*3)/4;
@@ -84,18 +101,18 @@ public class LogIn extends JFrame {
         loginPwd.setText("Wachtwoord");
 
 
-        JTextField loginEmailTxt = new JTextField();
         loginEmailTxt.setFont(new Font("Segoe UI", 0, screenSize.width/103));
         loginEmailTxt.setForeground(new Color(102, 102, 102));
         loginEmailTxt.setBackground(new Color(255,255,255));
         loginEmailTxt.setBorder(BorderFactory.createMatteBorder(0, 0, screenSize.width/720, 0, new Color(12, 91, 160)));
+        loginEmailTxt.setDocument(new JTextFieldLimit(45));
 
 
-        JPasswordField loginPwdTxt = new JPasswordField();
         loginPwdTxt.setFont(new Font("Segoe UI", 0, 15));
         loginPwdTxt.setForeground(new Color(102, 102, 102));
         loginPwdTxt.setBackground(new Color(255,255,255));
         loginPwdTxt.setBorder(BorderFactory.createMatteBorder(0, 0, screenSize.width/720, 0, new Color(12, 91, 160)));
+        loginPwdTxt.setDocument(new JTextFieldLimit(45));
 
 
         KGradientPanel buttonGradient = new KGradientPanel();

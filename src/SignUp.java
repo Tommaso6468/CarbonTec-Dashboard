@@ -17,13 +17,27 @@ public class SignUp extends JFrame {
 
     public JButton ofLogIn = new JButton("<html><u>Of log in</u></html");
 
+    public JTextField signupVoornaamTxt = new JTextField();
+    public JTextField signupAchternaamTxt = new JTextField();
+    public JTextField signupEmailTxt = new JTextField();
+    public JPasswordField signupPwdTxt = new JPasswordField();
+
 
     private void signupButtonPressed(ActionEvent e){
-        if (e.getSource() == aanmaken) callback.accept(1);
+        if (e.getSource() == aanmaken){
+            if (signupVoornaamTxt.getDocument().getLength() < 1) return;
+            if (signupAchternaamTxt.getDocument().getLength() < 1) return;
+            if (signupEmailTxt.getDocument().getLength() < 1) return;
+            if (signupPwdTxt.getDocument().getLength() < 1) return;
+            if (!signupEmailTxt.getText().matches(EMAIL_PATTERN)) return;
+            callback.accept(1);
+        }
         if (e.getSource() == ofLogIn) callback.accept(2);
     }
 
-
+    private static final String EMAIL_PATTERN =
+            "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+                    + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
 
     public SignUp() throws IOException {
 
@@ -78,11 +92,11 @@ public class SignUp extends JFrame {
         signupVoornaam.setText("Voornaam");
 
 
-        JTextField signupVoornaamTxt = new JTextField();
         signupVoornaamTxt.setFont(new Font("Segoe UI",0,screenSize.width/103));
         signupVoornaamTxt.setForeground(new Color(102,102,102));
         signupVoornaamTxt.setBackground(new Color(255,255,255));
         signupVoornaamTxt.setBorder(BorderFactory.createMatteBorder(0, 0, screenSize.width/720, 0, new Color(12, 91, 160)));
+        signupVoornaamTxt.setDocument(new JTextFieldLimit(45));
 
 
         JLabel signupAchternaam = new JLabel();
@@ -91,11 +105,11 @@ public class SignUp extends JFrame {
         signupAchternaam.setText("Achternaam");
 
 
-        JTextField signupAchternaamTxt = new JTextField();
         signupAchternaamTxt.setFont(new Font("Segoe UI",0,screenSize.width/103));
         signupAchternaamTxt.setForeground(new Color(102,102,102));
         signupAchternaamTxt.setBackground(new Color(255,255,255));
         signupAchternaamTxt.setBorder(BorderFactory.createMatteBorder(0,0,screenSize.width/720,0,new Color(12,91,160)));
+        signupAchternaamTxt.setDocument(new JTextFieldLimit(45));
 
 
 
@@ -111,18 +125,18 @@ public class SignUp extends JFrame {
         signupPwd.setText("Wachtwoord");
 
 
-        JTextField signupEmailTxt = new JTextField();
         signupEmailTxt.setFont(new Font("Segoe UI", 0, screenSize.width/103));
         signupEmailTxt.setForeground(new Color(102, 102, 102));
         signupEmailTxt.setBackground(new Color(255,255,255));
         signupEmailTxt.setBorder(BorderFactory.createMatteBorder(0, 0, screenSize.width/720, 0, new Color(12, 91, 160)));
+        signupEmailTxt.setDocument(new JTextFieldLimit(45));
 
 
-        JPasswordField signupPwdTxt = new JPasswordField();
         signupPwdTxt.setFont(new Font("Segoe UI", 0, screenSize.width/103));
         signupPwdTxt.setForeground(new Color(102, 102, 102));
         signupPwdTxt.setBackground(new Color(255,255,255));
         signupPwdTxt.setBorder(BorderFactory.createMatteBorder(0, 0, screenSize.width/720, 0, new Color(12, 91, 160)));
+        signupPwdTxt.setDocument(new JTextFieldLimit(45));
 
 
         KGradientPanel buttonGradient = new KGradientPanel();
