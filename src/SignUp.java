@@ -28,7 +28,7 @@ public class SignUp extends JFrame {
             if (signupVoornaamTxt.getDocument().getLength() < 1) return;
             if (signupAchternaamTxt.getDocument().getLength() < 1) return;
             if (signupEmailTxt.getDocument().getLength() < 1) return;
-            if (signupPwdTxt.getDocument().getLength() < 1) return;
+            if (signupPwdTxt.getDocument().getLength() < 8) return;
             if (!signupEmailTxt.getText().matches(EMAIL_PATTERN)) return;
             callback.accept(1);
         }
