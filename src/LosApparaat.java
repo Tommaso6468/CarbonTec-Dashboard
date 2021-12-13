@@ -4,6 +4,16 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.util.function.Consumer;
+import java.awt.Color;
+import java.awt.FlowLayout;
+
+import javax.swing.BorderFactory;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.border.Border;
+
+import static javax.swing.BorderFactory.createDashedBorder;
+import static javax.swing.BorderFactory.createLineBorder;
 
 public class LosApparaat extends JFrame {
 
@@ -54,21 +64,32 @@ public class LosApparaat extends JFrame {
         apparaatNaam.setFont(new Font("Segoe UI", 1, screenSize.width/60));
         apparaatNaam.setText("Lokaal 101");
 
-        JLabel Rating = new JLabel();
+
+        JLabel Rating = new JLabel(); //"<html>First line and maybe second line</html>"
         Rating.setForeground(new Color(0,255,0));
         Rating.setFont(new Font("Segoe UI", 1, screenSize.width/60));
+        this.getContentPane().setLayout(new FlowLayout());
+        Border border = createLineBorder(Color.getColor(String.valueOf(bg)), 3);
+        Rating.setBorder(border);
+        add(Rating);
+        // System.out.println("Uw CO2 rating is: ");
         Rating.setText("Gezond!");
+
 
         JLabel GeschDag = new JLabel();
         GeschDag.setForeground(new Color(150,100,255));
         GeschDag.setFont(new Font("Segoe UI", 1, screenSize.width/40));
         GeschDag.setText("Geschiedenis afgelopen 24 uur");
+        GeschDag.setVisible(true);
 
         JLabel CO2PPM = new JLabel();
         CO2PPM.setForeground(new Color(0,0,0));
         CO2PPM.setFont(new Font("Segoe UI", 1, screenSize.width/60));
         CO2PPM.setText("850 PPM");
 
+        JPanel Ratingpanel = new JPanel();
+        Ratingpanel.setBackground(new Color(255, 255, 255));
+        Ratingpanel.setBounds(screenSize.width*2/17, screenSize.height/8, screenSize.width*3/4, screenSize.height*3/4);
 
 
 
@@ -139,9 +160,12 @@ public class LosApparaat extends JFrame {
                                 .addGap(screenSize.width/20)
                                 .addGroup(losApparaatLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                                         .addComponent(apparaatNaam, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                        // .addGap(0)
                                         .addComponent(Rating, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                        // .addGap(80)
                                         .addComponent(CO2PPM, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-
+                                        // .addGap(80)
+                                        // .addComponent(GeschDag, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                                 )
 
 
@@ -161,11 +185,11 @@ public class LosApparaat extends JFrame {
 
                         .addGroup(losApparaatLayout.createSequentialGroup()
 
-                                .addGap(50)
+                                .addGap(100)
                                 .addComponent(apparaatNaam, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                                 .addGap(70)
                                 .addComponent(CO2PPM, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                .addGap(5)
+                                .addGap(70)
                                 .addComponent(Rating, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 
 
