@@ -1,8 +1,11 @@
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.util.function.Consumer;
 
-public class Group {
-}
-public class Apparaat extends JFrame {}
+
+
+
+class Apparaat extends JFrame {
 
     public JButton dag = new JButton("dag");
 
@@ -10,15 +13,13 @@ public class Apparaat extends JFrame {}
 
     public JButton maand = new JButton("maand");
 
-    JButton group = new JButton();
-    group.add(dag);
-            group.add(week);
-            group.add(maand);
+    public Consumer<Integer> callback;
 
-            this.add(dag);
-            this.add(week);
-            this.add(maand);
-            this.pack();
-            this.setvVisible(true);
+    private void ButtonPressed(ActionEvent e) {
+        if (e.getSource() == dag) callback.accept(1);
+        if (e.getSource() == week) callback.accept(2);
+        if (e.getSource() == maand) callback.accept(3);
+    }
+}
 
 

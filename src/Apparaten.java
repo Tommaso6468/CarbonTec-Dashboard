@@ -18,19 +18,18 @@ public class Apparaten extends JFrame {
 
     public Consumer<Integer> callback;
 
-    private void ButtonPressed(ActionEvent e){
+    private void ButtonPressed(ActionEvent e) {
         if (e.getSource() == logOut) callback.accept(1);
         if (e.getSource() == home) callback.accept(2);
         if (e.getSource() == apparaten) callback.accept(3);
     }
 
-    public Apparaten(){
+    public Apparaten() {
 
         //Resolutie gebruiker zoeken
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        screenSize.width = (int) (screenSize.width*3)/4;
-        screenSize.height = (int) (screenSize.height*3)/4;
-
+        screenSize.width = (int) (screenSize.width * 3) / 4;
+        screenSize.height = (int) (screenSize.height * 3) / 4;
 
 
         KGradientPanel bg = new KGradientPanel();
@@ -39,10 +38,10 @@ public class Apparaten extends JFrame {
         bg.setGradientFocus(1500);
 
         JPanel navbar = new JPanel();
-        navbar.setBackground(new Color(255,255,255));
-        navbar.setBounds(0,0,screenSize.width,screenSize.height/15);
+        navbar.setBackground(new Color(255, 255, 255));
+        navbar.setBounds(0, 0, screenSize.width, screenSize.height / 15);
 
-        logOut.setFont(new Font("Segoe UI", 0,screenSize.width/96));
+        logOut.setFont(new Font("Segoe UI", 0, screenSize.width / 96));
         logOut.setForeground(new Color(102, 102, 102));
         logOut.setOpaque(false);
         logOut.setBorderPainted(false);
@@ -50,33 +49,33 @@ public class Apparaten extends JFrame {
         logOut.addActionListener(this::ButtonPressed);
 
 
-        home.setFont(new Font("Segoe UI",1,screenSize.width/80));
-        home.setForeground(new Color(0,0,0));
+        home.setFont(new Font("Segoe UI", 1, screenSize.width / 80));
+        home.setForeground(new Color(0, 0, 0));
         home.setOpaque(false);
         home.setBorderPainted(false);
         home.setContentAreaFilled(false);
         home.addActionListener(this::ButtonPressed);
         home.setBorder(BorderFactory.createEmptyBorder());
 
-        apparaten.setFont(new Font("Segoe UI",1,screenSize.width/80));
-        apparaten.setForeground(new Color(0,0,0));
+        apparaten.setFont(new Font("Segoe UI", 1, screenSize.width / 80));
+        apparaten.setForeground(new Color(0, 0, 0));
         apparaten.setOpaque(false);
         apparaten.setContentAreaFilled(false);
         apparaten.addActionListener(this::ButtonPressed);
-        apparaten.setBorder(BorderFactory.createMatteBorder(0, 0, screenSize.width/720, 0, new Color(12, 91, 160)));
+        apparaten.setBorder(BorderFactory.createMatteBorder(0, 0, screenSize.width / 720, 0, new Color(12, 91, 160)));
 
 
         JPanel panel = new JPanel();
-        panel.setBackground(new Color(255,255,255));
-        panel.setBounds(screenSize.width/15, screenSize.height/7, screenSize.width*10/12, screenSize.height*10/14);
+        panel.setBackground(new Color(255, 255, 255));
+        panel.setBounds(screenSize.width / 15, screenSize.height / 7, screenSize.width * 10 / 12, screenSize.height * 10 / 14);
 
 
         JLabel apparatenLbl = new JLabel();
-        apparatenLbl.setFont(new Font("Segoe UI",1,screenSize.width/80));
-        apparatenLbl.setForeground(new Color(0,0,0));
+        apparatenLbl.setFont(new Font("Segoe UI", 1, screenSize.width / 80));
+        apparatenLbl.setForeground(new Color(0, 0, 0));
         apparatenLbl.setText("| Apparaten");
 
-        nieuwApparaat.setFont(new Font("Segoe UI",1,screenSize.width/96));
+        nieuwApparaat.setFont(new Font("Segoe UI", 1, screenSize.width / 96));
         nieuwApparaat.setContentAreaFilled(false);
         nieuwApparaat.setOpaque(false);
         nieuwApparaat.setForeground(new Color(12, 91, 160));
@@ -89,11 +88,11 @@ public class Apparaten extends JFrame {
         navbarLayout.setHorizontalGroup(
                 navbarLayout.createParallelGroup(GroupLayout.Alignment.CENTER)
                         .addGroup(navbarLayout.createSequentialGroup()
-                                .addGap((screenSize.width*20)/46)
+                                .addGap((screenSize.width * 20) / 46)
                                 .addComponent(home)
-                                .addGap(screenSize.width/20)
+                                .addGap(screenSize.width / 20)
                                 .addComponent(apparaten)
-                                .addGap((screenSize.width*10)/30)
+                                .addGap((screenSize.width * 10) / 30)
                                 .addComponent(logOut)
 
                         )
@@ -102,7 +101,7 @@ public class Apparaten extends JFrame {
         navbarLayout.setVerticalGroup(
                 navbarLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                         .addGroup(navbarLayout.createSequentialGroup()
-                                .addGap(screenSize.height/50)
+                                .addGap(screenSize.height / 50)
                                 .addGroup(navbarLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                                         .addGroup(navbarLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
                                                 .addComponent(home)
@@ -119,12 +118,12 @@ public class Apparaten extends JFrame {
         panelLayout.setHorizontalGroup(
                 panelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                         .addGroup(panelLayout.createSequentialGroup()
-                                .addGap(screenSize.width/35)
+                                .addGap(screenSize.width / 35)
                                 .addGroup(panelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                                         .addComponent(apparatenLbl)
                                 )
                                 .addGroup(panelLayout.createSequentialGroup()
-                                        .addGap(screenSize.width/30)
+                                        .addGap(screenSize.width / 30)
                                         .addGroup(panelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                                                 .addComponent(nieuwApparaat)
                                         )
@@ -135,11 +134,11 @@ public class Apparaten extends JFrame {
         panelLayout.setVerticalGroup(
                 panelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                         .addGroup(panelLayout.createSequentialGroup()
-                                .addGap(screenSize.height/25)
+                                .addGap(screenSize.height / 25)
                                 .addComponent(apparatenLbl)
                         )
                         .addGroup(panelLayout.createSequentialGroup()
-                                .addGap(screenSize.height/23)
+                                .addGap(screenSize.height / 23)
                                 .addComponent(nieuwApparaat)
                         )
         );
@@ -168,9 +167,10 @@ public class Apparaten extends JFrame {
         RoundedBorder(int radius) {
             this.radius = radius;
         }
+
         @Override
         public Insets getBorderInsets(Component c) {
-            return new Insets(this.radius+1, this.radius+1, this.radius+2, this.radius);
+            return new Insets(this.radius + 1, this.radius + 1, this.radius + 2, this.radius);
         }
 
         @Override
@@ -180,7 +180,7 @@ public class Apparaten extends JFrame {
 
         @Override
         public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) {
-            g.drawRoundRect(x,y,width-1,height-1,radius,radius);
+            g.drawRoundRect(x, y, width - 1, height - 1, radius, radius);
 
         }
 
@@ -192,15 +192,18 @@ public class Apparaten extends JFrame {
 
             public JButton maand = new JButton("maand");
 
+            public JButton jaar = new JButton("jaar");
+
             public Consumer<Integer> callback;
 
             private void ButtonPressed(ActionEvent e) {
                 if (e.getSource() == dag) callback.accept(1);
                 if (e.getSource() == week) callback.accept(2);
                 if (e.getSource() == maand) callback.accept(3);
+                if (e.getSource() == jaar) callback.accept(4);
             }
 
 
-
-
         }
+    }
+}
