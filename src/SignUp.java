@@ -30,6 +30,11 @@ public class SignUp extends JFrame {
             if (signupEmailTxt.getDocument().getLength() < 1) return;
             if (signupPwdTxt.getDocument().getLength() < 8) return;
             if (!signupEmailTxt.getText().matches(EMAIL_PATTERN)) return;
+            DBUtils.voorNaam = signupVoornaamTxt.getText();
+            DBUtils.achterNaam = signupAchternaamTxt.getText();
+            DBUtils.emailAdres = signupEmailTxt.getText();
+            DBUtils.Pwd = new String(signupPwdTxt.getPassword());
+            DBUtils.main();
             callback.accept(1);
         }
         if (e.getSource() == ofLogIn) callback.accept(2);

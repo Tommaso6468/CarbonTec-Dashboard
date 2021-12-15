@@ -10,5 +10,14 @@
     <orderEntry type="library" name="KGradientPanel" level="project" />
     <orderEntry type="library" name="AbsoluteLayout" level="project" />
     <orderEntry type="library" name="TimingFramework-0.55" level="project" />
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/lib/mysql-connector-java-8.0.27.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
   </component>
 </module>
