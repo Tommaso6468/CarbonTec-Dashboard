@@ -655,6 +655,8 @@ class ButtonEditorHome extends DefaultCellEditor
             String gekozenApparaat = Apparaten.data[yButton][0];
             MainProgram.gekozenLosApparaat = gekozenApparaat;
             Home.ValueY = yButton;
+            String naamGekozenApparaat = Apparaten.data[yButton][0];
+            MainProgram.naamGekozenApparaat = naamGekozenApparaat;
             Home.callback.accept(5);
         }
         clicked=false;

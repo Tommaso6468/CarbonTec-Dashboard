@@ -6,12 +6,14 @@ public class MainProgram {
 
     public static void main(String[] args) throws IOException{
 
-        loginScherm();
+        losapparaatScherm();
+        //loginScherm();
         File fm = new File("apparaten.csv");
 
     }
 
     public static String gekozenLosApparaat;
+    public static String naamGekozenApparaat;
 
 
 

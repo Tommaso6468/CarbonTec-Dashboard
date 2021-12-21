@@ -3,6 +3,7 @@ import keeptoo.KGradientPanel;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.security.interfaces.RSAKey;
 import java.util.function.Consumer;
 import java.awt.Color;
 import java.awt.FlowLayout;
@@ -15,6 +16,8 @@ import javax.swing.border.Border;
 import static javax.swing.BorderFactory.createDashedBorder;
 import static javax.swing.BorderFactory.createLineBorder;
 
+
+
 public class LosApparaat extends JFrame {
 
     public JButton logOut = new JButton("<html><U>Uitloggen</U></html>");
@@ -24,6 +27,15 @@ public class LosApparaat extends JFrame {
     public JButton apparaten = new JButton("Apparaten");
 
     public Consumer<Integer> callback;
+
+    public String sterLeeg = String.valueOf("\u2606");
+    public String sterVol = String.valueOf("\u2605");
+    public String geenSter = sterLeeg + sterLeeg + sterLeeg + sterLeeg + sterLeeg;
+    public String eenSter = sterLeeg + sterLeeg + sterLeeg + sterLeeg + sterVol;
+    public String tweeSterren = sterLeeg + sterLeeg + sterLeeg + sterVol + sterVol;
+    public String drieSterren = sterLeeg + sterLeeg + sterVol + sterVol + sterVol;
+    public String vierSterren = sterLeeg + sterVol + sterVol + sterVol + sterVol;
+    public String vijfSterren = sterVol + sterVol + sterVol + sterVol + sterVol;
 
     private void ButtonPressed(ActionEvent e){
         if (e.getSource() == logOut) callback.accept(1);
@@ -64,16 +76,18 @@ public class LosApparaat extends JFrame {
         apparaatNaam.setFont(new Font("Segoe UI", 1, screenSize.width/60));
         apparaatNaam.setText("Lokaal 101");
 
-
         JLabel Rating = new JLabel(); //"<html>First line and maybe second line</html>"
         Rating.setForeground(new Color(0,255,0));
         Rating.setFont(new Font("Segoe UI", 1, screenSize.width/60));
-        this.getContentPane().setLayout(new FlowLayout());
-        Border border = createLineBorder(Color.getColor(String.valueOf(bg)), 3);
-        Rating.setBorder(border);
-        add(Rating);
+        Rating.setBorder(new RoundedBorder(2));
         // System.out.println("Uw CO2 rating is: ");
         Rating.setText("Gezond!");
+
+        JLabel RatingText = new JLabel();
+        RatingText.setForeground(new Color(0,0,0));
+        RatingText.setBackground(new Color(0,0,255));
+        RatingText.setFont(new Font("Seqoe UI", 1, screenSize.width/40));
+        RatingText.setText("Uw gezondheidsrating is:");
 
 
         JLabel GeschDag = new JLabel();
@@ -160,11 +174,11 @@ public class LosApparaat extends JFrame {
                                 .addGap(screenSize.width/20)
                                 .addGroup(losApparaatLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                                         .addComponent(apparaatNaam, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                        // .addGap(0)
+                                        .addGap(screenSize.width/2)
                                         .addComponent(Rating, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                        // .addGap(80)
+                                        .addGap(screenSize.width/2)
                                         .addComponent(CO2PPM, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                        // .addGap(80)
+                                                .addGap(screenSize.width/2)
                                         // .addComponent(GeschDag, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                                 )
 
@@ -185,12 +199,15 @@ public class LosApparaat extends JFrame {
 
                         .addGroup(losApparaatLayout.createSequentialGroup()
 
-                                .addGap(100)
-                                .addComponent(apparaatNaam, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                .addGap(70)
-                                .addComponent(CO2PPM, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                .addGap(70)
+                                .addGap(screenSize.height/5)
+                                .addComponent(RatingText)
                                 .addComponent(Rating, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                        .addGap(screenSize.height/5)
+                                //.addGap(70)
+                                .addComponent(CO2PPM, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                        .addGap(screenSize.height/5)
+                                //.addGap(70)
+                                .addComponent(apparaatNaam, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 
 
                         )
@@ -227,5 +244,29 @@ public class LosApparaat extends JFrame {
 
     }
 
+    private static class RoundedBorder implements Border {
+
+        private int radius;
+
+        RoundedBorder(int radius) {
+            this.radius = radius;
+        }
+        @Override
+        public Insets getBorderInsets(Component c) {
+            return new Insets(this.radius+1, this.radius+1, this.radius+2, this.radius);
+        }
+
+        @Override
+        public boolean isBorderOpaque() {
+            return true;
+        }
+
+        @Override
+        public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) {
+            g.drawRoundRect(x,y,width-1,height-1,radius,radius);
+
+        }
+
+    }
 
 }
