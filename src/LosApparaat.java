@@ -73,12 +73,12 @@ public class LosApparaat extends JFrame {
         JLabel apparaatNaam = new JLabel();
         apparaatNaam.setForeground(new Color(0,0,0));
         apparaatNaam.setBackground(new Color(0,0,255));
-        apparaatNaam.setFont(new Font("Segoe UI", 1, screenSize.width/60));
+        apparaatNaam.setFont(new Font("Segoe UI", 1, screenSize.width/80));
         apparaatNaam.setText("Lokaal 101");
 
         JLabel Rating = new JLabel(); //"<html>First line and maybe second line</html>"
         Rating.setForeground(new Color(0,255,0));
-        Rating.setFont(new Font("Segoe UI", 1, screenSize.width/60));
+        Rating.setFont(new Font("Segoe UI", 1, screenSize.width/80));
         Rating.setBorder(new RoundedBorder(2));
         // System.out.println("Uw CO2 rating is: ");
         Rating.setText("Gezond!");
@@ -86,8 +86,8 @@ public class LosApparaat extends JFrame {
         JLabel RatingText = new JLabel();
         RatingText.setForeground(new Color(0,0,0));
         RatingText.setBackground(new Color(0,0,255));
-        RatingText.setFont(new Font("Seqoe UI", 1, screenSize.width/40));
-        RatingText.setText("Uw gezondheidsrating is:");
+        RatingText.setFont(new Font("Seqoe UI", 1, screenSize.width/80));
+        RatingText.setText("Uw CO2 rating is:");
 
 
         JLabel GeschDag = new JLabel();
@@ -98,7 +98,7 @@ public class LosApparaat extends JFrame {
 
         JLabel CO2PPM = new JLabel();
         CO2PPM.setForeground(new Color(0,0,0));
-        CO2PPM.setFont(new Font("Segoe UI", 1, screenSize.width/60));
+        CO2PPM.setFont(new Font("Segoe UI", 1, screenSize.width/80));
         CO2PPM.setText("850 PPM");
 
         JPanel Ratingpanel = new JPanel();
@@ -173,7 +173,9 @@ public class LosApparaat extends JFrame {
                         .addGroup(losApparaatLayout.createSequentialGroup()
                                 .addGap(screenSize.width/20)
                                 .addGroup(losApparaatLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                                        .addComponent(apparaatNaam, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(RatingText, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                                .addGap(screenSize.width/2)
+                                                .addComponent(apparaatNaam, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                                         .addGap(screenSize.width/2)
                                         .addComponent(Rating, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                                         .addGap(screenSize.width/2)
@@ -199,15 +201,14 @@ public class LosApparaat extends JFrame {
 
                         .addGroup(losApparaatLayout.createSequentialGroup()
 
-                                .addGap(screenSize.height/5)
-                                .addComponent(RatingText)
-                                .addComponent(Rating, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                        .addGap(screenSize.height/5)
-                                //.addGap(70)
-                                .addComponent(CO2PPM, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                        .addGap(screenSize.height/5)
-                                //.addGap(70)
+                                .addGap(screenSize.height/10)
                                 .addComponent(apparaatNaam, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                        .addGap(screenSize.height/50)
+                                .addComponent(RatingText, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                         .addGap(screenSize.height/50)
+                                .addComponent(Rating, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                        .addGap(screenSize.height/50)
+                                .addComponent(CO2PPM, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 
 
                         )
