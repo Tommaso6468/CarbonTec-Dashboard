@@ -89,6 +89,21 @@ public class LosApparaat extends JFrame {
         RatingText.setFont(new Font("Seqoe UI", 1, screenSize.width/80));
         RatingText.setText("Uw CO2 rating is:");
 
+        JLabel ratingMaand = new JLabel();
+        ratingMaand.setFont(new Font("Dialog.bold",0,screenSize.width/80));
+        ratingMaand.setForeground(new Color(0,0,0));
+        ratingMaand.setText(drieSterren);
+
+        JLabel ratingWeek = new JLabel();
+        ratingWeek.setFont(new Font("Dialog.bold",0,screenSize.width/80));
+        ratingWeek.setForeground(new Color(0,0,0));
+        ratingWeek.setText(vierSterren);
+
+        JLabel ratingDag = new JLabel();
+        ratingDag.setFont(new Font("Dialog.bold",0,screenSize.width/80));
+        ratingDag.setForeground(new Color(0,0,0));
+        ratingDag.setText(vijfSterren);
+
 
         JLabel GeschDag = new JLabel();
         GeschDag.setForeground(new Color(150,100,255));
@@ -105,9 +120,23 @@ public class LosApparaat extends JFrame {
         Ratingpanel.setBackground(new Color(255, 255, 255));
         Ratingpanel.setBounds(screenSize.width*2/17, screenSize.height/8, screenSize.width*3/4, screenSize.height*3/4);
 
+        JLabel RatingmaandText = new JLabel();
+        RatingmaandText.setForeground(new Color(0,0,0));
+        RatingmaandText.setBackground(new Color(0,0,255));
+        RatingmaandText.setFont(new Font("Seqoe UI", 1, screenSize.width/80));
+        RatingmaandText.setText("Rating deze maand:");
 
+        JLabel RatingweekText = new JLabel();
+        RatingweekText.setForeground(new Color(0,0,0));
+        RatingweekText.setBackground(new Color(0,0,255));
+        RatingweekText.setFont(new Font("Seqoe UI", 1, screenSize.width/80));
+        RatingweekText.setText("Rating deze week:");
 
-
+        JLabel Ratingdagtext = new JLabel();
+        Ratingdagtext.setForeground(new Color(0,0,0));
+        Ratingdagtext.setBackground(new Color(0,0,255));
+        Ratingdagtext.setFont(new Font("Seqoe UI", 1, screenSize.width/80));
+        Ratingdagtext.setText("Rating vandaag:");
 
 
         logOut.setFont(new Font("Segoe UI", 0,screenSize.width/96));
@@ -176,11 +205,22 @@ public class LosApparaat extends JFrame {
                                                 .addComponent(RatingText, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                                                 .addGap(screenSize.width/2)
                                                 .addComponent(apparaatNaam, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                        .addGap(screenSize.width/2)
-                                        .addComponent(Rating, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                        .addGap(screenSize.width/2)
-                                        .addComponent(CO2PPM, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                                                 .addGap(screenSize.width/2)
+                                                .addComponent(Rating, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                                .addGap(screenSize.width/2)
+                                                .addComponent(CO2PPM, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                                .addGap(screenSize.width/2)
+                                                .addComponent(Ratingdagtext, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                                .addGap(screenSize.width/2)
+                                                .addComponent(ratingDag, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                                .addGap(screenSize.width/2)
+                                                .addComponent(RatingweekText, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                                .addGap(screenSize.width/2)
+                                                .addComponent(ratingWeek, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                                .addGap(screenSize.width/2)
+                                                .addComponent(RatingmaandText, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                                .addGap(screenSize.width/2)
+                                                .addComponent(ratingMaand, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                                         // .addComponent(GeschDag, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                                 )
 
@@ -209,6 +249,19 @@ public class LosApparaat extends JFrame {
                                 .addComponent(Rating, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                                         .addGap(screenSize.height/50)
                                 .addComponent(CO2PPM, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                        .addGap(screenSize.height/7)
+                                .addComponent(Ratingdagtext, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                        .addGap(screenSize.height/50)
+                                .addComponent(ratingDag, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                        .addGap(screenSize.height/50)
+                                .addComponent(RatingweekText, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                        .addGap(screenSize.height/50)
+                                .addComponent(ratingWeek, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                        .addGap(screenSize.height/50)
+                                .addComponent(RatingmaandText, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                        .addGap(screenSize.height/50)
+                                .addComponent(ratingMaand, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+
 
 
                         )
