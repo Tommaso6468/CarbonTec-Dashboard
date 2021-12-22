@@ -77,12 +77,12 @@ public class LosApparaat extends JFrame {
         JLabel apparaatNaam = new JLabel();
         apparaatNaam.setForeground(new Color(0,0,0));
         apparaatNaam.setBackground(new Color(0,0,255));
-        apparaatNaam.setFont(new Font("Segoe UI", 1, screenSize.width/80));
+        apparaatNaam.setFont(new Font("Segoe UI", 1, screenSize.width/85));
         apparaatNaam.setText("Lokaal 101");
 
         JLabel Rating = new JLabel(); //"<html>First line and maybe second line</html>"
         Rating.setForeground(new Color(0,255,0));
-        Rating.setFont(new Font("Segoe UI", 1, screenSize.width/80));
+        Rating.setFont(new Font("Segoe UI", 1, screenSize.width/85));
         Rating.setBorder(new RoundedBorder(2));
         // System.out.println("Uw CO2 rating is: ");
         Rating.setText("Gezond!");
@@ -90,7 +90,7 @@ public class LosApparaat extends JFrame {
         JLabel RatingText = new JLabel();
         RatingText.setForeground(new Color(0,0,0));
         RatingText.setBackground(new Color(0,0,255));
-        RatingText.setFont(new Font("Seqoe UI", 1, screenSize.width/80));
+        RatingText.setFont(new Font("Seqoe UI", 1, screenSize.width/85));
         RatingText.setText("Uw CO2 rating is:");
 
         JLabel ratingMaand = new JLabel();
@@ -117,7 +117,7 @@ public class LosApparaat extends JFrame {
 
         JLabel CO2PPM = new JLabel();
         CO2PPM.setForeground(new Color(0,0,0));
-        CO2PPM.setFont(new Font("Segoe UI", 1, screenSize.width/80));
+        CO2PPM.setFont(new Font("Segoe UI", 1, screenSize.width/85));
         CO2PPM.setText("850 PPM");
 
         JPanel Ratingpanel = new JPanel();
@@ -127,19 +127,19 @@ public class LosApparaat extends JFrame {
         JLabel RatingmaandText = new JLabel();
         RatingmaandText.setForeground(new Color(0,0,0));
         RatingmaandText.setBackground(new Color(0,0,255));
-        RatingmaandText.setFont(new Font("Seqoe UI", 1, screenSize.width/80));
+        RatingmaandText.setFont(new Font("Seqoe UI", 1, screenSize.width/85));
         RatingmaandText.setText("Rating deze maand:");
 
         JLabel RatingweekText = new JLabel();
         RatingweekText.setForeground(new Color(0,0,0));
         RatingweekText.setBackground(new Color(0,0,255));
-        RatingweekText.setFont(new Font("Seqoe UI", 1, screenSize.width/80));
+        RatingweekText.setFont(new Font("Seqoe UI", 1, screenSize.width/85));
         RatingweekText.setText("Rating deze week:");
 
         JLabel Ratingdagtext = new JLabel();
         Ratingdagtext.setForeground(new Color(0,0,0));
         Ratingdagtext.setBackground(new Color(0,0,255));
-        Ratingdagtext.setFont(new Font("Seqoe UI", 1, screenSize.width/80));
+        Ratingdagtext.setFont(new Font("Seqoe UI", 1, screenSize.width/85));
         Ratingdagtext.setText("Rating vandaag:");
 
 
