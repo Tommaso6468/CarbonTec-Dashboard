@@ -68,6 +68,10 @@ public class LosApparaat extends JFrame {
         JPanel losApparaatBg = new JPanel();
         losApparaatBg.setBackground(new Color(255, 255, 255));
         losApparaatBg.setBounds(screenSize.width*2/17, screenSize.height/8, screenSize.width*3/4, screenSize.height*3/4);
+        losApparaatBg.add(new JSeparator(JSeparator.VERTICAL));
+        losApparaatBg.setSize(350, 800);
+        losApparaatBg.setVisible(true);
+
 
 
         JLabel apparaatNaam = new JLabel();
@@ -105,11 +109,11 @@ public class LosApparaat extends JFrame {
         ratingDag.setText(vijfSterren);
 
 
-        JLabel GeschDag = new JLabel();
-        GeschDag.setForeground(new Color(150,100,255));
-        GeschDag.setFont(new Font("Segoe UI", 1, screenSize.width/40));
-        GeschDag.setText("Geschiedenis afgelopen 24 uur");
-        GeschDag.setVisible(true);
+        //JLabel GeschDag = new JLabel();
+        //GeschDag.setForeground(new Color(150,100,255));
+        //.setFont(new Font("Segoe UI", 1, screenSize.width/80));
+        //GeschDag.setText("Geschiedenis afgelopen 24 uur");
+        //GeschDag.setVisible(true);
 
         JLabel CO2PPM = new JLabel();
         CO2PPM.setForeground(new Color(0,0,0));
@@ -145,7 +149,6 @@ public class LosApparaat extends JFrame {
         logOut.setBorderPainted(false);
         logOut.setContentAreaFilled(false);
         logOut.addActionListener(this::ButtonPressed);
-
 
         home.setFont(new Font("Segoe UI",1,screenSize.width/80));
         home.setForeground(new Color(0,0,0));
@@ -200,7 +203,7 @@ public class LosApparaat extends JFrame {
                 losApparaatLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
 
                         .addGroup(losApparaatLayout.createSequentialGroup()
-                                .addGap(screenSize.width/20)
+                                .addGap(screenSize.width/60)
                                 .addGroup(losApparaatLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                                                 .addComponent(RatingText, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                                                 .addGap(screenSize.width/2)
@@ -226,9 +229,9 @@ public class LosApparaat extends JFrame {
 
 
                         ).addGroup(losApparaatLayout.createSequentialGroup()
-                                .addGap(screenSize.width/5)
-                                .addGroup(losApparaatLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                                        .addComponent(GeschDag, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                                //.addGap(screenSize.width/60)
+                                //.addGroup(losApparaatLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                                        //.addComponent(GeschDag, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
                         )
 
 
@@ -241,7 +244,7 @@ public class LosApparaat extends JFrame {
 
                         .addGroup(losApparaatLayout.createSequentialGroup()
 
-                                .addGap(screenSize.height/10)
+                                .addGap(screenSize.height/35)
                                 .addComponent(apparaatNaam, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                                         .addGap(screenSize.height/50)
                                 .addComponent(RatingText, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
@@ -249,7 +252,7 @@ public class LosApparaat extends JFrame {
                                 .addComponent(Rating, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                                         .addGap(screenSize.height/50)
                                 .addComponent(CO2PPM, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                        .addGap(screenSize.height/7)
+                                        .addGap(screenSize.height/5)
                                 .addComponent(Ratingdagtext, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                                         .addGap(screenSize.height/50)
                                 .addComponent(ratingDag, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
@@ -266,14 +269,14 @@ public class LosApparaat extends JFrame {
 
                         )
 
-                        .addGroup(losApparaatLayout.createSequentialGroup()
-                                .addGap(5)
-                                .addComponent(GeschDag, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                        //.addGroup(losApparaatLayout.createSequentialGroup()
+                                //.addGap(5)
+                                //.addComponent(GeschDag, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 
-                        )
+                        );
 
 
-        );
+
 
 
 
