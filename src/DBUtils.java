@@ -8,10 +8,9 @@ import java.sql.*;
 
 public class DBUtils {
 
-    public static void main() {
-
-        signUpUser();
+    public static void main(String[]args) {
     }
+
 
     public static String voorNaam;
     public static String achterNaam;
@@ -75,4 +74,57 @@ public class DBUtils {
             }
         }
     }
-}
+
+    public static void logInUser() {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+
+        String connectionUrl = "jdbc:mysql://localhost:3306/CO2MELDER";
+        String user = "root";
+        String pass = "delft2001";
+        try {
+            connection = DriverManager.getConnection(connectionUrl, user, pass);
+            preparedStatement = connection.prepareStatement("SELECT wachtwoord FROM gebruikers WHERE emailadres = ?");
+            preparedStatement.setString(1, emailAdres);
+            resultSet = preparedStatement.executeQuery();
+
+            if (!resultSet.isBeforeFirst()) {
+                System.out.println("Gebruiker niet gevonden!");
+            } else {
+                while (resultSet.next()) {
+                    String retrievedPwd = resultSet.getString("wachtwoord");
+                    if (retrievedPwd.equals(Pwd)) {
+                        System.out.println("Welkom");
+                    } else {
+                        System.out.println("Wachtwoord komt niet overeen");
+                    }
+                }
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            if (resultSet != null)
+                try {
+                    resultSet.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (preparedStatement != null) {
+                try {
+                    preparedStatement.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (connection != null) {
+                try {
+                    connection.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }

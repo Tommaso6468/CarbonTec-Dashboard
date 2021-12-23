@@ -31,6 +31,7 @@ public class LogIn extends JFrame {
             if (loginEmailTxt.getDocument().getLength() < 1) return;
             if (loginPwdTxt.getDocument().getLength() < 8) return;
             if (!loginEmailTxt.getText().matches(EMAIL_PATTERN)) return;
+            DBUtils.logInUser();
             callback.accept(1);
         }
         if (e.getSource() == maakAccount) callback.accept(2);

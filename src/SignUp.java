@@ -34,7 +34,7 @@ public class SignUp extends JFrame {
             DBUtils.achterNaam = signupAchternaamTxt.getText();
             DBUtils.emailAdres = signupEmailTxt.getText();
             DBUtils.Pwd = new String(signupPwdTxt.getPassword());
-            DBUtils.main();
+            DBUtils.signUpUser();
             callback.accept(1);
         }
         if (e.getSource() == ofLogIn) callback.accept(2);
