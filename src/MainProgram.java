@@ -6,15 +6,15 @@ public class MainProgram {
     public static void main(String[] args) throws IOException{
 
 
-//        losapparaatScherm();
-        loginScherm();
+        losapparaatScherm();
+//        loginScherm();
 //        nieuwapparaatScherm();
         File fm = new File("apparaten.csv");
 
     }
 
-    public static String gekozenLosApparaat;
-    public static String naamGekozenApparaat;
+    public static String gekozenLosApparaat = "null";
+    public static String naamGekozenApparaat = "null";
 
 
 
