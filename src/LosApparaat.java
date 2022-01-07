@@ -42,7 +42,7 @@ public class LosApparaat extends JFrame {
         // tweede is ppm
         double[][] data = { {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24}, {100,200,300,400,500,600,700,800,900,1000,1100,1200,1003,1004,1500,1006,1700,1080,1900,2000,2100,2200,2300,2400} };
 
-        ds.addSeries(MainProgram.naamGekozenApparaat, data);
+        ds.addSeries("Apparaat", data);
 
         return ds;
     }
