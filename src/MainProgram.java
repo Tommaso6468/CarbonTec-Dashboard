@@ -1,12 +1,12 @@
 import java.io.File;
 import java.io.IOException;
-import java.util.function.Consumer;
 
 public class MainProgram {
 
     public static void main(String[] args) throws IOException{
 
-        losapparaatScherm();
+
+        //losapparaatScherm();
         //loginScherm();
         File fm = new File("apparaten.csv");
 
@@ -243,6 +243,45 @@ public class MainProgram {
 
             if (nieuwApparaatReturn == 3){
                 nieuwApparaat.setVisible(false);
+                apparatenScherm();
+            }
+
+        };
+
+
+
+    }
+    public static void grafiekscherm () {
+
+
+        Grafiek Grafiek = new Grafiek();
+        Grafiek.setVisible(true);
+
+        Grafiek.callback = (GrafiekReturn) -> {
+
+            //1 is logout
+            //2 is home
+            //3 is apparaten
+            if (GrafiekReturn == 1){
+                Grafiek.setVisible(false);
+                try {
+                    loginScherm();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            if (GrafiekReturn == 2){
+                Grafiek.setVisible(false);
+                try {
+                    homeScherm();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            if (GrafiekReturn == 3){
+                Grafiek.setVisible(false);
                 apparatenScherm();
             }
 

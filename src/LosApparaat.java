@@ -1,20 +1,10 @@
 import keeptoo.KGradientPanel;
 
 import javax.swing.*;
+import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.security.interfaces.RSAKey;
 import java.util.function.Consumer;
-import java.awt.Color;
-import java.awt.FlowLayout;
-
-import javax.swing.BorderFactory;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.border.Border;
-
-import static javax.swing.BorderFactory.createDashedBorder;
-import static javax.swing.BorderFactory.createLineBorder;
 
 
 
@@ -136,6 +126,10 @@ public class LosApparaat extends JFrame {
         RatingweekText.setFont(new Font("Seqoe UI", 1, screenSize.width/85));
         RatingweekText.setText("Rating deze week:");
 
+        Grafiek apparaatgrafiek = new Grafiek();
+        apparaatgrafiek.setForeground(new Color(0,0,0));
+        apparaatgrafiek.setBackground(new Color(0,0,255));
+
         JLabel Ratingdagtext = new JLabel();
         Ratingdagtext.setForeground(new Color(0,0,0));
         Ratingdagtext.setBackground(new Color(0,0,255));
@@ -224,6 +218,8 @@ public class LosApparaat extends JFrame {
                                                 .addComponent(RatingmaandText, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                                                 .addGap(screenSize.width/2)
                                                 .addComponent(ratingMaand, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                                .addGap(screenSize.width/2)
+                                                .addComponent(apparaatgrafiek, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                                         // .addComponent(GeschDag, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                                 )
 
