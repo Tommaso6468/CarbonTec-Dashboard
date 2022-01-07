@@ -1,4 +1,10 @@
 import keeptoo.KGradientPanel;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.data.xy.DefaultXYDataset;
+import org.jfree.data.xy.XYDataset;
 
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -21,11 +27,25 @@ public class LosApparaat extends JFrame {
     public String sterLeeg = String.valueOf("\u2606");
     public String sterVol = String.valueOf("\u2605");
     public String geenSter = sterLeeg + sterLeeg + sterLeeg + sterLeeg + sterLeeg;
-    public String eenSter = sterLeeg + sterLeeg + sterLeeg + sterLeeg + sterVol;
-    public String tweeSterren = sterLeeg + sterLeeg + sterLeeg + sterVol + sterVol;
-    public String drieSterren = sterLeeg + sterLeeg + sterVol + sterVol + sterVol;
-    public String vierSterren = sterLeeg + sterVol + sterVol + sterVol + sterVol;
+    public String eenSter = sterVol + sterLeeg + sterLeeg + sterLeeg + sterLeeg;
+    public String tweeSterren = sterVol + sterVol + sterLeeg + sterLeeg + sterLeeg;
+    public String drieSterren = sterVol + sterVol + sterVol + sterLeeg + sterLeeg;
+    public String vierSterren = sterVol + sterVol + sterVol + sterVol + sterLeeg;
     public String vijfSterren = sterVol + sterVol + sterVol + sterVol + sterVol;
+
+    private XYDataset createDataset() {
+
+        DefaultXYDataset ds = new DefaultXYDataset();
+
+        //data aanpassen
+        // eerste is uren
+        // tweede is ppm
+        double[][] data = { {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24}, {100,200,300,400,500,600,700,800,900,1000,1100,1200,1003,1004,1500,1006,1700,1080,1900,2000,2100,2200,2300,2400} };
+
+        ds.addSeries(MainProgram.gekozenLosApparaat, data);
+
+        return ds;
+    }
 
     private void ButtonPressed(ActionEvent e){
         if (e.getSource() == logOut) callback.accept(1);
@@ -35,7 +55,7 @@ public class LosApparaat extends JFrame {
 
     public LosApparaat(){
 
-        String apparaatNummer = MainProgram.gekozenLosApparaat;
+        int apparaatNummer = Integer.parseInt(MainProgram.gekozenLosApparaat);
 
         //Resolutie gebruiker zoeken
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -59,8 +79,17 @@ public class LosApparaat extends JFrame {
         losApparaatBg.setBackground(new Color(255, 255, 255));
         losApparaatBg.setBounds(screenSize.width*2/17, screenSize.height/8, screenSize.width*3/4, screenSize.height*3/4);
         losApparaatBg.add(new JSeparator(JSeparator.VERTICAL));
-        losApparaatBg.setSize(350, 800);
         losApparaatBg.setVisible(true);
+
+
+        XYDataset ds = createDataset();
+        JFreeChart chart =
+                ChartFactory.createXYLineChart("CO2 afgelopen 24 uur",
+                        "uren", "ppm", ds, PlotOrientation.VERTICAL, true, true,
+                        false);
+
+        ChartPanel cp = new ChartPanel(chart);
+        cp.setBounds(screenSize.width*2/6, screenSize.height/8, screenSize.width/2, screenSize.height*3/4);
 
 
 
@@ -126,10 +155,10 @@ public class LosApparaat extends JFrame {
         RatingweekText.setFont(new Font("Seqoe UI", 1, screenSize.width/85));
         RatingweekText.setText("Rating deze week:");
 
-        Grafiek apparaatgrafiek = new Grafiek();
+        /*Grafiek apparaatgrafiek = new Grafiek();
         apparaatgrafiek.setForeground(new Color(0,0,0));
         apparaatgrafiek.setBackground(new Color(0,0,255));
-
+*/
         JLabel Ratingdagtext = new JLabel();
         Ratingdagtext.setForeground(new Color(0,0,0));
         Ratingdagtext.setBackground(new Color(0,0,255));
@@ -197,7 +226,7 @@ public class LosApparaat extends JFrame {
                 losApparaatLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
 
                         .addGroup(losApparaatLayout.createSequentialGroup()
-                                .addGap(screenSize.width/60)
+                                .addGap(screenSize.width/70)
                                 .addGroup(losApparaatLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                                                 .addComponent(RatingText, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                                                 .addGap(screenSize.width/2)
@@ -219,17 +248,14 @@ public class LosApparaat extends JFrame {
                                                 .addGap(screenSize.width/2)
                                                 .addComponent(ratingMaand, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                                                 .addGap(screenSize.width/2)
-                                                .addComponent(apparaatgrafiek, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                        // .addComponent(GeschDag, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+//                                                .addComponent(apparaatgrafiek, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                        // .addComponent(GeschDag, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE
                                 )
 
 
-                        ).addGroup(losApparaatLayout.createSequentialGroup()
-                                //.addGap(screenSize.width/60)
-                                //.addGroup(losApparaatLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                                        //.addComponent(GeschDag, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                        )
 
+
+                        )
 
 
         );
@@ -265,6 +291,7 @@ public class LosApparaat extends JFrame {
 
                         )
 
+
                         //.addGroup(losApparaatLayout.createSequentialGroup()
                                 //.addGap(5)
                                 //.addComponent(GeschDag, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
@@ -292,9 +319,24 @@ public class LosApparaat extends JFrame {
 
         //Toevoegen objects
         bg.add(navbar);
+        bg.add(cp);
         bg.add(losApparaatBg);
 
 
+
+
+    }
+
+    private static double[][] getSineData(double phase) {
+
+        double[] xData = new double[100];
+        double[] yData = new double[100];
+        for (int i = 0; i < xData.length; i++) {
+            double radians = phase + (2 * Math.PI / xData.length * i);
+            xData[i] = radians;
+            yData[i] = Math.sin(radians);
+        }
+        return new double[][] { xData, yData };
     }
 
     private static class RoundedBorder implements Border {

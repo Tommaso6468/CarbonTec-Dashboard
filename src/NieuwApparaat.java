@@ -37,6 +37,9 @@ public class NieuwApparaat extends JFrame {
             //Apparaat toevoegen logic
             if (serienummerTxt.getDocument().getLength() < 5) return;
             if (apparaatnaamTxt.getDocument().getLength() < 1) return;
+            int serienummerInt = Integer.parseInt(serienummerTxt.getText());
+            int length = String.valueOf(serienummerInt).length();
+            if (length != 5) return;
             String ID = serienummerTxt.getText();
             String naam = apparaatnaamTxt.getText();
             String path = "apparaten.csv";
