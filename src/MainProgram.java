@@ -7,8 +7,8 @@ public class MainProgram {
 
 
 //        losapparaatScherm();
-//        loginScherm();
-        nieuwapparaatScherm();
+        loginScherm();
+//        nieuwapparaatScherm();
         File fm = new File("apparaten.csv");
 
     }
