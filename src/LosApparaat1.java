@@ -31,11 +31,11 @@ import javax.swing.table.DefaultTableCellRenderer;
 import org.jdesktop.animation.timing.Animator;
 import org.jdesktop.animation.timing.TimingTarget;
 import org.jdesktop.animation.timing.TimingTargetAdapter;
-public class Home extends JFrame {
+public class LosApparaat1 extends JFrame {
 
     public JButton logOut = new JButton("<html><U>Uitloggen</U></html>");
 
-    public JButton home = new JButton("Home");
+    public JButton home = new JButton("LosApparaat1");
 
     public JButton apparaten = new JButton("Apparaten");
 
@@ -75,7 +75,7 @@ public class Home extends JFrame {
 
 
 
-    public Home() throws InterruptedException {
+    public LosApparaat1() throws InterruptedException {
 
         //Resolutie gebruiker zoeken
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -148,7 +148,7 @@ public class Home extends JFrame {
         JLabel apparatenlbl = new JLabel();
         apparatenlbl.setFont(new Font("Segoe UI",1,screenSize.width/80));
         apparatenlbl.setForeground(new Color(0,0,0));
-        apparatenlbl.setText("Apparaten");
+        apparatenlbl.setText("Apparaatnaam");
 
 
         alleApparaten.setFont(new Font("Segoe UI",1,screenSize.width/96));
@@ -181,6 +181,37 @@ public class Home extends JFrame {
         gezndrtngJaar.setFont(new Font("Segoe UI",1,screenSize.width/80));
         gezndrtngJaar.setForeground(new Color(0,0,0));
         gezndrtngJaar.setText("Gezondheidsrating afgelopen jaar:");
+
+        JLabel apparaatNaam = new JLabel();
+        apparaatNaam.setForeground(new Color(0,0,0));
+        apparaatNaam.setBackground(new Color(0,0,255));
+        apparaatNaam.setFont(new Font("Segoe UI", 1, screenSize.width/60));
+        apparaatNaam.setText("Lokaal 101");
+
+
+        JLabel Rating = new JLabel(); //"<html>First line and maybe second line</html>"
+        Rating.setForeground(new Color(0,255,0));
+        Rating.setFont(new Font("Segoe UI", 1, screenSize.width/60));
+        this.getContentPane().setLayout(new FlowLayout());
+        add(Rating);
+        // System.out.println("Uw CO2 rating is: ");
+        Rating.setText("Gezond!");
+
+
+        JLabel GeschDag = new JLabel();
+        GeschDag.setForeground(new Color(150,100,255));
+        GeschDag.setFont(new Font("Segoe UI", 1, screenSize.width/40));
+        GeschDag.setText("Geschiedenis afgelopen 24 uur");
+        GeschDag.setVisible(true);
+
+        JLabel CO2PPM = new JLabel();
+        CO2PPM.setForeground(new Color(0,0,0));
+        CO2PPM.setFont(new Font("Segoe UI", 1, screenSize.width/60));
+        CO2PPM.setText("850 PPM");
+
+        JPanel Ratingpanel = new JPanel();
+        Ratingpanel.setBackground(new Color(255, 255, 255));
+        Ratingpanel.setBounds(screenSize.width*2/17, screenSize.height/8, screenSize.width*3/4, screenSize.height*3/4);
 
 
         // Later hieronder sterren koppelen aan berekening met db gegevens
@@ -251,17 +282,17 @@ public class Home extends JFrame {
 
         GroupLayout navbarLayout = new GroupLayout(navbar);
         navbar.setLayout(navbarLayout);
-            navbarLayout.setHorizontalGroup(
-                    navbarLayout.createParallelGroup(GroupLayout.Alignment.CENTER)
-                    .addGroup(navbarLayout.createSequentialGroup()
-                            .addGap((screenSize.width*20)/46)
-                            .addComponent(home)
-                            .addGap(screenSize.width/20)
-                            .addComponent(apparaten)
-                            .addGap((screenSize.width*10)/30)
-                            .addComponent(logOut)
-                    )
-            );
+        navbarLayout.setHorizontalGroup(
+                navbarLayout.createParallelGroup(GroupLayout.Alignment.CENTER)
+                        .addGroup(navbarLayout.createSequentialGroup()
+                                .addGap((screenSize.width*20)/46)
+                                .addComponent(home)
+                                .addGap(screenSize.width/20)
+                                .addComponent(apparaten)
+                                .addGap((screenSize.width*10)/30)
+                                .addComponent(logOut)
+                        )
+        );
 
         navbarLayout.setVerticalGroup(
                 navbarLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
@@ -292,7 +323,7 @@ public class Home extends JFrame {
         apparatenLijst.setRowHeight(screenSize.height/20);
 //        apparatenLijst.setEnabled(false);
         apparatenLijst.getColumnModel().getColumn(2).setCellRenderer(new ButtonRenderer());
-        apparatenLijst.getColumnModel().getColumn(2).setCellEditor(new ButtonEditorHome(new JTextField()));
+        apparatenLijst.getColumnModel().getColumn(2).setCellEditor(new ButtonEditorLosApparaat1(new JTextField()));
         apparatenLijst.getColumnModel().getColumn(1).setCellEditor(new ButtonEditor2(new JTextField()));
         apparatenLijst.getColumnModel().getColumn(0).setCellEditor(new ButtonEditor2(new JTextField()));
 
@@ -304,9 +335,8 @@ public class Home extends JFrame {
                                 .addGap(screenSize.width/30)
                                 .addGroup(apparatenLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                                         .addComponent(apparatenlbl, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(scrollPane)
                                         .addGroup(apparatenLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
-                                                .addComponent(alleApparaten)
+                                                .addComponent(apparaatNaam)
                                         )
                                 )
                                 .addGap(screenSize.width/30)
@@ -320,9 +350,7 @@ public class Home extends JFrame {
                                 .addGap(screenSize.height/30)
                                 .addComponent(apparatenlbl)
                                 .addGap(screenSize.height/30)
-                                .addComponent(scrollPane)
-                                .addGap(screenSize.height/30)
-                                .addComponent(alleApparaten)
+                                .addComponent(apparaatNaam)
                                 .addGap(screenSize.height/30)
                         )
         );
@@ -336,18 +364,14 @@ public class Home extends JFrame {
                                 .addGap(screenSize.width/30)
                                 .addGroup(gezondheidLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                                         .addComponent(gezndrtngDag)
-                                        .addComponent(gezndrtngWeek)
-                                        .addComponent(gezndrtngMaand)
-                                        .addComponent(gezndrtngJaar)
+                                        .addComponent(Rating)
                                 )
                         )
                         .addGroup(gezondheidLayout.createSequentialGroup()
                                 .addGap(screenSize.width/3)
                                 .addGroup(gezondheidLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                                        .addComponent(ratingDag)
-                                        .addComponent(ratingWeek)
-                                        .addComponent(ratingMaand)
-                                        .addComponent(ratingJaar)
+                                        .addComponent(GeschDag)
+                                        .addComponent(CO2PPM)
                                 )
                         )
         );
@@ -356,23 +380,13 @@ public class Home extends JFrame {
                 gezondheidLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                         .addGroup(gezondheidLayout.createSequentialGroup()
                                 .addGap(screenSize.height/23)
-                                .addComponent(gezndrtngDag)
-                                .addGap(screenSize.height/26)
-                                .addComponent(gezndrtngWeek)
-                                .addGap(screenSize.height/26)
-                                .addComponent(gezndrtngMaand)
-                                .addGap(screenSize.height/26)
-                                .addComponent(gezndrtngJaar)
+                                .addComponent(apparaatNaam)
                         )
                         .addGroup(gezondheidLayout.createSequentialGroup()
                                 .addGap(screenSize.height/23)
-                                .addComponent(ratingDag)
+                                .addComponent(GeschDag)
                                 .addGap(screenSize.height/24)
-                                .addComponent(ratingWeek)
-                                .addGap(screenSize.height/24)
-                                .addComponent(ratingMaand)
-                                .addGap(screenSize.height/24)
-                                .addComponent(ratingJaar)
+                                .addComponent(CO2PPM)
                         )
         );
 
@@ -620,13 +634,13 @@ public class Home extends JFrame {
 
 }
 
-class ButtonEditorHome extends DefaultCellEditor
+class ButtonEditorLosApparaat1 extends DefaultCellEditor
 {
     protected JButton btn;
     private String lbl;
     private Boolean clicked;
 
-    public ButtonEditorHome(JTextField txt) {
+    public ButtonEditorLosApparaat1(JTextField txt) {
         super(txt);
 
         btn=new JButton();
@@ -654,10 +668,8 @@ class ButtonEditorHome extends DefaultCellEditor
             int yButton = Math.toIntExact(btn.getY()/40);
             String gekozenApparaat = Apparaten.data[yButton][0];
             MainProgram.gekozenLosApparaat = gekozenApparaat;
-            Home.ValueY = yButton;
-            String naamGekozenApparaat = Apparaten.data[yButton][0];
-            MainProgram.naamGekozenApparaat = naamGekozenApparaat;
-            Home.callback.accept(5);
+            LosApparaat1.ValueY = yButton;
+            LosApparaat1.callback.accept(5);
         }
         clicked=false;
         return new String(lbl);

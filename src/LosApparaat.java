@@ -1,9 +1,18 @@
 import keeptoo.KGradientPanel;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.data.xy.DefaultXYDataset;
+import org.jfree.data.xy.XYDataset;
 
 import javax.swing.*;
+import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.util.function.Consumer;
+
+
 
 public class LosApparaat extends JFrame {
 
@@ -15,6 +24,29 @@ public class LosApparaat extends JFrame {
 
     public Consumer<Integer> callback;
 
+    public String sterLeeg = String.valueOf("\u2606");
+    public String sterVol = String.valueOf("\u2605");
+    public String geenSter = sterLeeg + sterLeeg + sterLeeg + sterLeeg + sterLeeg;
+    public String eenSter = sterVol + sterLeeg + sterLeeg + sterLeeg + sterLeeg;
+    public String tweeSterren = sterVol + sterVol + sterLeeg + sterLeeg + sterLeeg;
+    public String drieSterren = sterVol + sterVol + sterVol + sterLeeg + sterLeeg;
+    public String vierSterren = sterVol + sterVol + sterVol + sterVol + sterLeeg;
+    public String vijfSterren = sterVol + sterVol + sterVol + sterVol + sterVol;
+
+    private XYDataset createDataset() {
+
+        DefaultXYDataset ds = new DefaultXYDataset();
+
+        //data aanpassen
+        // eerste is uren
+        // tweede is ppm
+        double[][] data = { {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24}, {100,200,300,400,500,600,700,800,900,1000,1100,1200,1003,1004,1500,1006,1700,1080,1900,2000,2100,2200,2300,2400} };
+
+        ds.addSeries("Apparaat", data);
+
+        return ds;
+    }
+
     private void ButtonPressed(ActionEvent e){
         if (e.getSource() == logOut) callback.accept(1);
         if (e.getSource() == home) callback.accept(2);
@@ -24,6 +56,7 @@ public class LosApparaat extends JFrame {
     public LosApparaat(){
 
         String apparaatNummer = MainProgram.gekozenLosApparaat;
+        String naamApparaat = MainProgram.naamGekozenApparaat;
 
         //Resolutie gebruiker zoeken
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -46,33 +79,92 @@ public class LosApparaat extends JFrame {
         JPanel losApparaatBg = new JPanel();
         losApparaatBg.setBackground(new Color(255, 255, 255));
         losApparaatBg.setBounds(screenSize.width*2/17, screenSize.height/8, screenSize.width*3/4, screenSize.height*3/4);
+        losApparaatBg.add(new JSeparator(JSeparator.VERTICAL));
+        losApparaatBg.setVisible(true);
+
+
+        XYDataset ds = createDataset();
+        JFreeChart chart =
+                ChartFactory.createXYLineChart("CO2 afgelopen 24 uur",
+                        "uren", "ppm", ds, PlotOrientation.VERTICAL, true, true,
+                        false);
+
+        ChartPanel cp = new ChartPanel(chart);
+        cp.setBounds(screenSize.width*2/6, screenSize.height/8, screenSize.width/2, screenSize.height*3/4);
+
 
 
         JLabel apparaatNaam = new JLabel();
         apparaatNaam.setForeground(new Color(0,0,0));
         apparaatNaam.setBackground(new Color(0,0,255));
-        apparaatNaam.setFont(new Font("Segoe UI", 1, screenSize.width/60));
+        apparaatNaam.setFont(new Font("Segoe UI", 1, screenSize.width/85));
         apparaatNaam.setText("Lokaal 101");
 
-        JLabel Rating = new JLabel();
+        JLabel Rating = new JLabel(); //"<html>First line and maybe second line</html>"
         Rating.setForeground(new Color(0,255,0));
-        Rating.setFont(new Font("Segoe UI", 1, screenSize.width/60));
+        Rating.setFont(new Font("Segoe UI", 1, screenSize.width/85));
+        Rating.setBorder(new RoundedBorder(2));
+        // System.out.println("Uw CO2 rating is: ");
         Rating.setText("Gezond!");
 
-        JLabel GeschDag = new JLabel();
-        GeschDag.setForeground(new Color(150,100,255));
-        GeschDag.setFont(new Font("Segoe UI", 1, screenSize.width/40));
-        GeschDag.setText("Geschiedenis afgelopen 24 uur");
+        JLabel RatingText = new JLabel();
+        RatingText.setForeground(new Color(0,0,0));
+        RatingText.setBackground(new Color(0,0,255));
+        RatingText.setFont(new Font("Seqoe UI", 1, screenSize.width/85));
+        RatingText.setText("Uw CO2 rating is:");
+
+        JLabel ratingMaand = new JLabel();
+        ratingMaand.setFont(new Font("Dialog.bold",0,screenSize.width/80));
+        ratingMaand.setForeground(new Color(0,0,0));
+        ratingMaand.setText(drieSterren);
+
+        JLabel ratingWeek = new JLabel();
+        ratingWeek.setFont(new Font("Dialog.bold",0,screenSize.width/80));
+        ratingWeek.setForeground(new Color(0,0,0));
+        ratingWeek.setText(vierSterren);
+
+        JLabel ratingDag = new JLabel();
+        ratingDag.setFont(new Font("Dialog.bold",0,screenSize.width/80));
+        ratingDag.setForeground(new Color(0,0,0));
+        ratingDag.setText(vijfSterren);
+
+
+        //JLabel GeschDag = new JLabel();
+        //GeschDag.setForeground(new Color(150,100,255));
+        //.setFont(new Font("Segoe UI", 1, screenSize.width/80));
+        //GeschDag.setText("Geschiedenis afgelopen 24 uur");
+        //GeschDag.setVisible(true);
 
         JLabel CO2PPM = new JLabel();
         CO2PPM.setForeground(new Color(0,0,0));
-        CO2PPM.setFont(new Font("Segoe UI", 1, screenSize.width/60));
+        CO2PPM.setFont(new Font("Segoe UI", 1, screenSize.width/85));
         CO2PPM.setText("850 PPM");
 
+        JPanel Ratingpanel = new JPanel();
+        Ratingpanel.setBackground(new Color(255, 255, 255));
+        Ratingpanel.setBounds(screenSize.width*2/17, screenSize.height/8, screenSize.width*3/4, screenSize.height*3/4);
 
+        JLabel RatingmaandText = new JLabel();
+        RatingmaandText.setForeground(new Color(0,0,0));
+        RatingmaandText.setBackground(new Color(0,0,255));
+        RatingmaandText.setFont(new Font("Seqoe UI", 1, screenSize.width/85));
+        RatingmaandText.setText("Rating deze maand:");
 
+        JLabel RatingweekText = new JLabel();
+        RatingweekText.setForeground(new Color(0,0,0));
+        RatingweekText.setBackground(new Color(0,0,255));
+        RatingweekText.setFont(new Font("Seqoe UI", 1, screenSize.width/85));
+        RatingweekText.setText("Rating deze week:");
 
-
+        /*Grafiek apparaatgrafiek = new Grafiek();
+        apparaatgrafiek.setForeground(new Color(0,0,0));
+        apparaatgrafiek.setBackground(new Color(0,0,255));
+*/
+        JLabel Ratingdagtext = new JLabel();
+        Ratingdagtext.setForeground(new Color(0,0,0));
+        Ratingdagtext.setBackground(new Color(0,0,255));
+        Ratingdagtext.setFont(new Font("Seqoe UI", 1, screenSize.width/85));
+        Ratingdagtext.setText("Rating vandaag:");
 
 
         logOut.setFont(new Font("Segoe UI", 0,screenSize.width/96));
@@ -81,7 +173,6 @@ public class LosApparaat extends JFrame {
         logOut.setBorderPainted(false);
         logOut.setContentAreaFilled(false);
         logOut.addActionListener(this::ButtonPressed);
-
 
         home.setFont(new Font("Segoe UI",1,screenSize.width/80));
         home.setForeground(new Color(0,0,0));
@@ -136,21 +227,36 @@ public class LosApparaat extends JFrame {
                 losApparaatLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
 
                         .addGroup(losApparaatLayout.createSequentialGroup()
-                                .addGap(screenSize.width/20)
+                                .addGap(screenSize.width/70)
                                 .addGroup(losApparaatLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                                        .addComponent(apparaatNaam, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(Rating, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(CO2PPM, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-
+                                                .addComponent(RatingText, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                                .addGap(screenSize.width/2)
+                                                .addComponent(apparaatNaam, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                                .addGap(screenSize.width/2)
+                                                .addComponent(Rating, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                                .addGap(screenSize.width/2)
+                                                .addComponent(CO2PPM, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                                .addGap(screenSize.width/2)
+                                                .addComponent(Ratingdagtext, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                                .addGap(screenSize.width/2)
+                                                .addComponent(ratingDag, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                                .addGap(screenSize.width/2)
+                                                .addComponent(RatingweekText, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                                .addGap(screenSize.width/2)
+                                                .addComponent(ratingWeek, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                                .addGap(screenSize.width/2)
+                                                .addComponent(RatingmaandText, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                                .addGap(screenSize.width/2)
+                                                .addComponent(ratingMaand, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                                .addGap(screenSize.width/2)
+//                                                .addComponent(apparaatgrafiek, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                        // .addComponent(GeschDag, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE
                                 )
 
 
-                        ).addGroup(losApparaatLayout.createSequentialGroup()
-                                .addGap(screenSize.width/5)
-                                .addGroup(losApparaatLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                                        .addComponent(GeschDag, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                        )
 
+
+                        )
 
 
         );
@@ -161,24 +267,40 @@ public class LosApparaat extends JFrame {
 
                         .addGroup(losApparaatLayout.createSequentialGroup()
 
-                                .addGap(50)
+                                .addGap(screenSize.height/35)
                                 .addComponent(apparaatNaam, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                .addGap(70)
-                                .addComponent(CO2PPM, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                .addGap(5)
+                                        .addGap(screenSize.height/50)
+                                .addComponent(RatingText, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                         .addGap(screenSize.height/50)
                                 .addComponent(Rating, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                        .addGap(screenSize.height/50)
+                                .addComponent(CO2PPM, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                        .addGap(screenSize.height/4)
+                                .addComponent(Ratingdagtext, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                        .addGap(screenSize.height/50)
+                                .addComponent(ratingDag, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                        .addGap(screenSize.height/50)
+                                .addComponent(RatingweekText, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                        .addGap(screenSize.height/50)
+                                .addComponent(ratingWeek, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                        .addGap(screenSize.height/50)
+                                .addComponent(RatingmaandText, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                        .addGap(screenSize.height/50)
+                                .addComponent(ratingMaand, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+
 
 
                         )
 
-                        .addGroup(losApparaatLayout.createSequentialGroup()
-                                .addGap(5)
-                                .addComponent(GeschDag, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 
-                        )
+                        //.addGroup(losApparaatLayout.createSequentialGroup()
+                                //.addGap(5)
+                                //.addComponent(GeschDag, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+
+                        );
 
 
-        );
+
 
 
 
@@ -198,10 +320,49 @@ public class LosApparaat extends JFrame {
 
         //Toevoegen objects
         bg.add(navbar);
+        bg.add(cp);
         bg.add(losApparaatBg);
+
+
 
 
     }
 
+    private static double[][] getSineData(double phase) {
+
+        double[] xData = new double[100];
+        double[] yData = new double[100];
+        for (int i = 0; i < xData.length; i++) {
+            double radians = phase + (2 * Math.PI / xData.length * i);
+            xData[i] = radians;
+            yData[i] = Math.sin(radians);
+        }
+        return new double[][] { xData, yData };
+    }
+
+    private static class RoundedBorder implements Border {
+
+        private int radius;
+
+        RoundedBorder(int radius) {
+            this.radius = radius;
+        }
+        @Override
+        public Insets getBorderInsets(Component c) {
+            return new Insets(this.radius+1, this.radius+1, this.radius+2, this.radius);
+        }
+
+        @Override
+        public boolean isBorderOpaque() {
+            return true;
+        }
+
+        @Override
+        public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) {
+            g.drawRoundRect(x,y,width-1,height-1,radius,radius);
+
+        }
+
+    }
 
 }

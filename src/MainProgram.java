@@ -1,17 +1,20 @@
 import java.io.File;
 import java.io.IOException;
-import java.util.function.Consumer;
 
 public class MainProgram {
 
     public static void main(String[] args) throws IOException{
 
-        loginScherm();
+
+     //   losapparaatScherm();
+       loginScherm();
+//        nieuwapparaatScherm();
         File fm = new File("apparaten.csv");
 
     }
 
-    public static String gekozenLosApparaat;
+    public static String gekozenLosApparaat = "null";
+    public static String naamGekozenApparaat = "null";
 
 
 
@@ -247,6 +250,12 @@ public class MainProgram {
         };
 
 
+
+    }
+    public static void grafiekscherm () {
+
+        Grafiek Grafiek = new Grafiek();
+        Grafiek.setVisible(true);
 
     }
 

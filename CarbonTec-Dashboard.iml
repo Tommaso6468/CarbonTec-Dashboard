@@ -10,6 +10,9 @@
     <orderEntry type="library" name="KGradientPanel" level="project" />
     <orderEntry type="library" name="AbsoluteLayout" level="project" />
     <orderEntry type="library" name="TimingFramework-0.55" level="project" />
+<<<<<<< HEAD
+    <orderEntry type="library" name="jfreechart-1.5.2" level="project" />
+=======
     <orderEntry type="module-library">
       <library>
         <CLASSES>
@@ -19,5 +22,6 @@
         <SOURCES />
       </library>
     </orderEntry>
+>>>>>>> origin/login-connectie
   </component>
 </module>
