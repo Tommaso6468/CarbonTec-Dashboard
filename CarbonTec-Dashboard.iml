@@ -10,6 +10,18 @@
     <orderEntry type="library" name="KGradientPanel" level="project" />
     <orderEntry type="library" name="AbsoluteLayout" level="project" />
     <orderEntry type="library" name="TimingFramework-0.55" level="project" />
+<<<<<<< HEAD
     <orderEntry type="library" name="jfreechart-1.5.2" level="project" />
+=======
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/lib/mysql-connector-java-8.0.27.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+>>>>>>> origin/login-connectie
   </component>
 </module>
