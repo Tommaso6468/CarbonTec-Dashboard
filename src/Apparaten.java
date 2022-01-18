@@ -10,10 +10,8 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.function.Consumer;
 
 public class Apparaten extends JFrame {
@@ -388,11 +386,13 @@ class ButtonEditor extends DefaultCellEditor
         if(clicked)
         {
             int yButton = Math.toIntExact(btn.getY()/40);
-            String gekozenApparaat = Apparaten.data[yButton][0];
+            int gekozenApparaat = Integer.parseInt(Apparaten.data[yButton][0]);
             MainProgram.gekozenLosApparaat = gekozenApparaat;
             Apparaten.ValueY = yButton;
             String naamGekozenApparaat = Apparaten.data[yButton][0];
             MainProgram.naamGekozenApparaat = naamGekozenApparaat;
+            System.out.println(gekozenApparaat);
+            System.out.println(naamGekozenApparaat);
             Apparaten.callback.accept(5);
         }
         clicked=false;

@@ -2,9 +2,6 @@ import keeptoo.KGradientPanel;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
-import javax.swing.text.AttributeSet;
-import javax.swing.text.BadLocationException;
-import javax.swing.text.PlainDocument;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.image.BufferedImage;
@@ -31,7 +28,8 @@ public class LogIn extends JFrame {
             if (loginEmailTxt.getDocument().getLength() < 1) return;
             if (loginPwdTxt.getDocument().getLength() < 8) return;
             if (!loginEmailTxt.getText().matches(EMAIL_PATTERN)) return;
-            DBUtils.logInUser();
+            String pwd = new String(loginPwdTxt.getPassword());
+            if (!DBUtils.logInUser(pwd,loginEmailTxt.getText())) return;
             callback.accept(1);
         }
         if (e.getSource() == maakAccount) callback.accept(2);

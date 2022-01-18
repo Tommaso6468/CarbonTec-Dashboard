@@ -1,36 +1,20 @@
 import keeptoo.KGradientPanel;
-
-import javax.swing.*;
-import javax.swing.border.Border;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.geom.Arc2D;
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.Random;
-import java.util.function.Consumer;
-import java.awt.Color;
-import java.awt.Component;
-import java.awt.Graphics;
-import java.awt.Insets;
-import java.awt.BasicStroke;
-import java.awt.Dimension;
-import java.awt.FontMetrics;
-import java.awt.GradientPaint;
-import java.awt.Graphics2D;
-import java.awt.Point;
-import java.awt.RenderingHints;
-import java.awt.Shape;
-import java.awt.geom.Path2D;
-import java.awt.geom.Rectangle2D;
-import javax.swing.JComponent;
-import javax.swing.JLabel;
-import javax.swing.table.DefaultTableCellRenderer;
-
 import org.jdesktop.animation.timing.Animator;
 import org.jdesktop.animation.timing.TimingTarget;
 import org.jdesktop.animation.timing.TimingTargetAdapter;
+
+import javax.swing.*;
+import javax.swing.border.Border;
+import javax.swing.table.DefaultTableCellRenderer;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.geom.Arc2D;
+import java.awt.geom.Path2D;
+import java.awt.geom.Rectangle2D;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.function.Consumer;
 public class Home extends JFrame {
 
     public JButton logOut = new JButton("<html><U>Uitloggen</U></html>");
@@ -137,7 +121,7 @@ public class Home extends JFrame {
 
         JPanel gezondheidspanel = new JPanel();
         gezondheidspanel.setBackground(new Color(255,255,255));
-        gezondheidspanel.setBounds(screenSize.width*10/19,screenSize.height/7,screenSize.width*10/24,screenSize.height*10/30);
+        gezondheidspanel.setBounds(screenSize.width*10/19,screenSize.height/3,screenSize.width*10/24,screenSize.height*10/30);
 
 
         JPanel statistiekenpanel = new JPanel();
@@ -159,10 +143,10 @@ public class Home extends JFrame {
         alleApparaten.addActionListener(this::ButtonPressed);
 
 
-        JLabel gezndrtngDag = new JLabel();
+        /*JLabel gezndrtngDag = new JLabel();
         gezndrtngDag.setFont(new Font("Segoe UI",1,screenSize.width/80));
         gezndrtngDag.setForeground(new Color(0,0,0));
-        gezndrtngDag.setText("Gezondheidsrating afgelopen dag:");
+        gezndrtngDag.setText("Gezondheidsrating afgelopen dag:");*/
 
 
         JLabel gezndrtngWeek = new JLabel();
@@ -184,10 +168,10 @@ public class Home extends JFrame {
 
 
         // Later hieronder sterren koppelen aan berekening met db gegevens
-        JLabel ratingDag = new JLabel();
+        /*JLabel ratingDag = new JLabel();
         ratingDag.setFont(new Font("Dialog.bold",0,screenSize.width/80));
         ratingDag.setForeground(new Color(0,0,0));
-        ratingDag.setText(geenSter);
+        ratingDag.setText(geenSter);*/
 
 
         JLabel ratingWeek = new JLabel();
@@ -208,7 +192,7 @@ public class Home extends JFrame {
         ratingJaar.setText(geenSter);
 
 
-        JPanel linkerGauge = new JPanel();
+        /*JPanel linkerGauge = new JPanel();
         linkerGauge.setBounds(screenSize.width*10/19, screenSize.height*40/68, screenSize.width*10/48, screenSize.height*10/40);
         linkerGauge.setBackground(new Color(255,255,255));
 
@@ -246,7 +230,7 @@ public class Home extends JFrame {
         uptimeLbl.setFont(new Font("Segoe UI", 1, screenSize.width/96));
         uptimeLbl.setForeground(Color.BLACK);
         uptimeLbl.setText("Uptime");
-        uptimeLbl.setBounds(screenSize.height*100/69, screenSize.width*10/34, screenSize.width/5,screenSize.height/10);
+//        uptimeLbl.setBounds(screenSize.height*100/69, screenSize.width*10/34, screenSize.width/5,screenSize.height/10);*/
 
 
         GroupLayout navbarLayout = new GroupLayout(navbar);
@@ -335,7 +319,7 @@ public class Home extends JFrame {
                         .addGroup(gezondheidLayout.createSequentialGroup()
                                 .addGap(screenSize.width/30)
                                 .addGroup(gezondheidLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                                        .addComponent(gezndrtngDag)
+//                                        .addComponent(gezndrtngDag)
                                         .addComponent(gezndrtngWeek)
                                         .addComponent(gezndrtngMaand)
                                         .addComponent(gezndrtngJaar)
@@ -344,7 +328,7 @@ public class Home extends JFrame {
                         .addGroup(gezondheidLayout.createSequentialGroup()
                                 .addGap(screenSize.width/3)
                                 .addGroup(gezondheidLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                                        .addComponent(ratingDag)
+//                                        .addComponent(ratingDag)
                                         .addComponent(ratingWeek)
                                         .addComponent(ratingMaand)
                                         .addComponent(ratingJaar)
@@ -356,7 +340,7 @@ public class Home extends JFrame {
                 gezondheidLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                         .addGroup(gezondheidLayout.createSequentialGroup()
                                 .addGap(screenSize.height/23)
-                                .addComponent(gezndrtngDag)
+//                                .addComponent(gezndrtngDag)
                                 .addGap(screenSize.height/26)
                                 .addComponent(gezndrtngWeek)
                                 .addGap(screenSize.height/26)
@@ -366,7 +350,7 @@ public class Home extends JFrame {
                         )
                         .addGroup(gezondheidLayout.createSequentialGroup()
                                 .addGap(screenSize.height/23)
-                                .addComponent(ratingDag)
+//                                .addComponent(ratingDag)
                                 .addGap(screenSize.height/24)
                                 .addComponent(ratingWeek)
                                 .addGap(screenSize.height/24)
@@ -391,13 +375,13 @@ public class Home extends JFrame {
 
         //Toevoegen objects
         bg.add(navbar);
-        bg.add(verbondenLbl);
-        bg.add(uptimeLbl);
+//        bg.add(verbondenLbl);
+//        bg.add(uptimeLbl);
         bg.add(apparatenpanel);
         bg.add(gezondheidspanel);
-        bg.add(linkerGauge);
-        bg.add(rechterGauge);
-        bg.add(statistiekenpanel);
+//        bg.add(linkerGauge);
+                               //        bg.add(rechterGauge);
+//        bg.add(statistiekenpanel);
 
     }
 
@@ -652,11 +636,13 @@ class ButtonEditorHome extends DefaultCellEditor
         if(clicked)
         {
             int yButton = Math.toIntExact(btn.getY()/40);
-            String gekozenApparaat = Apparaten.data[yButton][0];
+            int gekozenApparaat = Integer.parseInt(Apparaten.data[yButton][0]);
             MainProgram.gekozenLosApparaat = gekozenApparaat;
             Home.ValueY = yButton;
             String naamGekozenApparaat = Apparaten.data[yButton][0];
             MainProgram.naamGekozenApparaat = naamGekozenApparaat;
+            System.out.println(gekozenApparaat);
+            System.out.println(naamGekozenApparaat);
             Home.callback.accept(5);
         }
         clicked=false;

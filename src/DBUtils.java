@@ -1,9 +1,3 @@
-import java.awt.event.ActionEvent;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.sql.*;
 
 public class DBUtils {
@@ -26,10 +20,9 @@ public class DBUtils {
         PreparedStatement psCheckUserExists = null;
         ResultSet resultSet = null;
 
-        String connectionUrl = "jdbc:mysql://localhost:3306/CO2MELDER";
-        String user = "root";
-        String pass = "delft2001";
-
+        String connectionUrl = "jdbc:mysql://localhost:3306/carbontec";
+        String user = "Bob";
+        String pass = "ikbenbob";
         try {
 
             connection = DriverManager.getConnection(connectionUrl, user, pass);
@@ -46,6 +39,7 @@ public class DBUtils {
                 psInsert.setString(3, emailAdres);
                 psInsert.setString(4, Pwd);
                 psInsert.executeUpdate();
+                System.out.println("statement set");
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -75,29 +69,33 @@ public class DBUtils {
         }
     }
 
-    public static void logInUser() {
+    public static boolean logInUser(String password, String emailAdres) {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
 
-        String connectionUrl = "jdbc:mysql://localhost:3306/CO2MELDER";
-        String user = "root";
-        String pass = "delft2001";
+        String connectionUrl = "jdbc:mysql://localhost:3306/carbontec";
+        String user = "Bob";
+        String pass = "ikbenbob";
         try {
             connection = DriverManager.getConnection(connectionUrl, user, pass);
             preparedStatement = connection.prepareStatement("SELECT wachtwoord FROM gebruikers WHERE emailadres = ?");
             preparedStatement.setString(1, emailAdres);
             resultSet = preparedStatement.executeQuery();
 
+            System.out.println(emailAdres);
+
             if (!resultSet.isBeforeFirst()) {
                 System.out.println("Gebruiker niet gevonden!");
             } else {
                 while (resultSet.next()) {
                     String retrievedPwd = resultSet.getString("wachtwoord");
-                    if (retrievedPwd.equals(Pwd)) {
+                    if (retrievedPwd.equals(password)) {
                         System.out.println("Welkom");
+                        return true;
                     } else {
                         System.out.println("Wachtwoord komt niet overeen");
+                        return false;
                     }
                 }
             }
@@ -126,5 +124,6 @@ public class DBUtils {
                     e.printStackTrace();
                 }
             }
+            return false;
         }
     }

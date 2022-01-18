@@ -6,14 +6,14 @@ public class MainProgram {
     public static void main(String[] args) throws IOException{
 
 
-     //   losapparaatScherm();
+//        losapparaatScherm();
        loginScherm();
 //        nieuwapparaatScherm();
         File fm = new File("apparaten.csv");
 
     }
 
-    public static String gekozenLosApparaat = "null";
+    public static int gekozenLosApparaat = 0;
     public static String naamGekozenApparaat = "null";
 
 

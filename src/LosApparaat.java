@@ -10,6 +10,8 @@ import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.sql.*;
+import java.util.ArrayList;
 import java.util.function.Consumer;
 
 
@@ -33,17 +35,46 @@ public class LosApparaat extends JFrame {
     public String vierSterren = sterVol + sterVol + sterVol + sterVol + sterLeeg;
     public String vijfSterren = sterVol + sterVol + sterVol + sterVol + sterVol;
 
-    private XYDataset createDataset() {
+    public int apparaatNummer = MainProgram.gekozenLosApparaat;
+    public String naamApparaat = MainProgram.naamGekozenApparaat;
+    public Double laatstePPM = 0.0;
+
+    private XYDataset createDataset() throws SQLException {
+
 
         DefaultXYDataset ds = new DefaultXYDataset();
+
+        Connection connect = DriverManager.getConnection(
+                "jdbc:mysql://localhost:3306/carbontec",
+                "Bob",
+                "ikbenbob");
+
+        PreparedStatement pst = null;
+        Statement statement = connect.createStatement( );
+        ResultSet waarde = statement.executeQuery("SELECT waarde FROM apparaat WHERE serienummer = " + apparaatNummer + " AND tijd like '2022-01-19%'");
+
+        ArrayList<Double> ppmwaardes = new ArrayList<>();
+        int i = 1;
+        while (waarde.next()){
+            ppmwaardes.add(waarde.getDouble(i));
+            i++;
+        }
+        int a = ppmwaardes.size() - 1;
+        while (a <= 24){
+            ppmwaardes.add(0.0);
+            a++;
+        }
+
+        System.out.println(ppmwaardes);
 
         //data aanpassen
         // eerste is uren
         // tweede is ppm
-        double[][] data = { {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24}, {100,200,300,400,500,600,700,800,900,1000,1100,1200,1003,1004,1500,1006,1700,1080,1900,2000,2100,2200,2300,2400} };
+        double[][] data = { {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24}, {ppmwaardes.get(0),ppmwaardes.get(1),ppmwaardes.get(2),ppmwaardes.get(3),ppmwaardes.get(4),ppmwaardes.get(5),ppmwaardes.get(6),ppmwaardes.get(7),ppmwaardes.get(8),ppmwaardes.get(9),ppmwaardes.get(10),ppmwaardes.get(11),ppmwaardes.get(12),ppmwaardes.get(13),ppmwaardes.get(14),ppmwaardes.get(15),ppmwaardes.get(16),ppmwaardes.get(17),ppmwaardes.get(18),ppmwaardes.get(19),ppmwaardes.get(20),ppmwaardes.get(21),ppmwaardes.get(22),ppmwaardes.get(23),} };
 
         ds.addSeries("Apparaat", data);
 
+        laatstePPM = ppmwaardes.get(23);
         return ds;
     }
 
@@ -55,8 +86,8 @@ public class LosApparaat extends JFrame {
 
     public LosApparaat(){
 
-        String apparaatNummer = MainProgram.gekozenLosApparaat;
-        String naamApparaat = MainProgram.naamGekozenApparaat;
+        //String apparaatNummer = MainProgram.gekozenLosApparaat;
+        //String naamApparaat = MainProgram.naamGekozenApparaat;
 
         //Resolutie gebruiker zoeken
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -83,7 +114,12 @@ public class LosApparaat extends JFrame {
         losApparaatBg.setVisible(true);
 
 
-        XYDataset ds = createDataset();
+        XYDataset ds = null;
+        try {
+            ds = createDataset();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         JFreeChart chart =
                 ChartFactory.createXYLineChart("CO2 afgelopen 24 uur",
                         "uren", "ppm", ds, PlotOrientation.VERTICAL, true, true,
@@ -98,14 +134,20 @@ public class LosApparaat extends JFrame {
         apparaatNaam.setForeground(new Color(0,0,0));
         apparaatNaam.setBackground(new Color(0,0,255));
         apparaatNaam.setFont(new Font("Segoe UI", 1, screenSize.width/85));
-        apparaatNaam.setText("Lokaal 101");
+        apparaatNaam.setText(naamApparaat);
 
         JLabel Rating = new JLabel(); //"<html>First line and maybe second line</html>"
-        Rating.setForeground(new Color(0,255,0));
+
         Rating.setFont(new Font("Segoe UI", 1, screenSize.width/85));
         Rating.setBorder(new RoundedBorder(2));
         // System.out.println("Uw CO2 rating is: ");
-        Rating.setText("Gezond!");
+        if (laatstePPM > 500) {
+            Rating.setText("Ongezond!");
+            Rating.setForeground(new Color(255,0,0));
+        } else {
+            Rating.setText("Gezond!");
+            Rating.setForeground(new Color(0,255,0));
+        }
 
         JLabel RatingText = new JLabel();
         RatingText.setForeground(new Color(0,0,0));
@@ -116,17 +158,17 @@ public class LosApparaat extends JFrame {
         JLabel ratingMaand = new JLabel();
         ratingMaand.setFont(new Font("Dialog.bold",0,screenSize.width/80));
         ratingMaand.setForeground(new Color(0,0,0));
-        ratingMaand.setText(drieSterren);
+        ratingMaand.setText(geenSter);
 
         JLabel ratingWeek = new JLabel();
         ratingWeek.setFont(new Font("Dialog.bold",0,screenSize.width/80));
         ratingWeek.setForeground(new Color(0,0,0));
-        ratingWeek.setText(vierSterren);
+        ratingWeek.setText(geenSter);
 
-        JLabel ratingDag = new JLabel();
+        /*JLabel ratingDag = new JLabel();
         ratingDag.setFont(new Font("Dialog.bold",0,screenSize.width/80));
         ratingDag.setForeground(new Color(0,0,0));
-        ratingDag.setText(vijfSterren);
+        ratingDag.setText(vijfSterren);*/
 
 
         //JLabel GeschDag = new JLabel();
@@ -138,7 +180,7 @@ public class LosApparaat extends JFrame {
         JLabel CO2PPM = new JLabel();
         CO2PPM.setForeground(new Color(0,0,0));
         CO2PPM.setFont(new Font("Segoe UI", 1, screenSize.width/85));
-        CO2PPM.setText("850 PPM");
+        CO2PPM.setText(laatstePPM + " PPM");
 
         JPanel Ratingpanel = new JPanel();
         Ratingpanel.setBackground(new Color(255, 255, 255));
@@ -160,11 +202,11 @@ public class LosApparaat extends JFrame {
         apparaatgrafiek.setForeground(new Color(0,0,0));
         apparaatgrafiek.setBackground(new Color(0,0,255));
 */
-        JLabel Ratingdagtext = new JLabel();
+        /*JLabel Ratingdagtext = new JLabel();
         Ratingdagtext.setForeground(new Color(0,0,0));
         Ratingdagtext.setBackground(new Color(0,0,255));
         Ratingdagtext.setFont(new Font("Seqoe UI", 1, screenSize.width/85));
-        Ratingdagtext.setText("Rating vandaag:");
+        Ratingdagtext.setText("Rating vandaag:");*/
 
 
         logOut.setFont(new Font("Segoe UI", 0,screenSize.width/96));
@@ -237,9 +279,9 @@ public class LosApparaat extends JFrame {
                                                 .addGap(screenSize.width/2)
                                                 .addComponent(CO2PPM, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                                                 .addGap(screenSize.width/2)
-                                                .addComponent(Ratingdagtext, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                                .addGap(screenSize.width/2)
-                                                .addComponent(ratingDag, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+//                                                .addComponent(Ratingdagtext, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+//                                                .addGap(screenSize.width/2)
+//                                                .addComponent(ratingDag, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                                                 .addGap(screenSize.width/2)
                                                 .addComponent(RatingweekText, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                                                 .addGap(screenSize.width/2)
@@ -276,10 +318,10 @@ public class LosApparaat extends JFrame {
                                         .addGap(screenSize.height/50)
                                 .addComponent(CO2PPM, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                                         .addGap(screenSize.height/4)
-                                .addComponent(Ratingdagtext, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                        .addGap(screenSize.height/50)
-                                .addComponent(ratingDag, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                        .addGap(screenSize.height/50)
+                                // .addComponent(Ratingdagtext, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                        //.addGap(screenSize.height/50)
+//                                .addComponent(ratingDag, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                        .addGap(screenSize.height/20)
                                 .addComponent(RatingweekText, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                                         .addGap(screenSize.height/50)
                                 .addComponent(ratingWeek, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
